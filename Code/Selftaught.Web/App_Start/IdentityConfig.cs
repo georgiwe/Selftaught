@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Selftaught.Web.Models;
+using Selftaught.Models;
+using Selftaught.Data;
 
 namespace Selftaught.Web
 {

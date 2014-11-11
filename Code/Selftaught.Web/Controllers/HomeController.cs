@@ -25,10 +25,10 @@ namespace Selftaught.Web.Controllers
             this.words = wordsDb;
         }
 
-        public HomeController()
-            : this(new DeletableEntityRepository<Word>(new ApplicationDbContext()))
-        {
-        }
+        //public HomeController()
+        //    : this(new DeletableEntityRepository<Word>(new ApplicationDbContext()))
+        //{
+        //}
 
         public ActionResult CreateWord(WordViewModel newWord)
         {

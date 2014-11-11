@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Selftaught.Models")]
+[assembly: AssemblyTitle("Selftaught.Data.Models")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("Selftaught.Models")]
+[assembly: AssemblyProduct("Selftaught.Data.Models")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3b1e572c-5a57-414f-a4ae-84e7c96f946d")]
+[assembly: Guid("e7fad19e-b056-4f95-80b6-8cfe70324c33")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Selftaught.Web.Models;
-using Selftaught.Models;
+using Selftaught.Data.Models;
 
 namespace Selftaught.Web.Controllers
 {

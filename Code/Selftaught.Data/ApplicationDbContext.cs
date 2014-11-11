@@ -1,7 +1,7 @@
 ﻿namespace Selftaught.Data
 {
     using Microsoft.AspNet.Identity.EntityFramework;
-    using Selftaught.Models;
+    using Selftaught.Data.Models;
     
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

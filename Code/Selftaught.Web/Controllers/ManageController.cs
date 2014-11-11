@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Selftaught.Web.Models;
-using Selftaught.Models;
+using Selftaught.Data.Models;
 
 namespace Selftaught.Web.Controllers
 {
@@ -312,7 +312,7 @@ namespace Selftaught.Web.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
-        #region Helpers
+#region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -369,6 +369,6 @@ namespace Selftaught.Web.Controllers
             Error
         }
 
-        #endregion
+#endregion
     }
 }

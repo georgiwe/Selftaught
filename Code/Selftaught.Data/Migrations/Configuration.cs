@@ -3,6 +3,7 @@ namespace Selftaught.Data.Migrations
     using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
+    using System.Linq;
 
     using Selftaught.Data.Models;
 
@@ -17,6 +18,11 @@ namespace Selftaught.Data.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
+            if (context.Words.Any())
+            {
+                return;
+            }
+
             var rnd = new Random();
             var german = new Language() { Name = "German" };
             var user = new ApplicationUser()

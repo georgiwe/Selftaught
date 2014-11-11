@@ -18,11 +18,11 @@ namespace Selftaught.Web.Controllers
     public class HomeController : Controller
     {
         protected const string LanguageSessionKey = "Language";
-        protected IRepository<Word> wordsDb;
+        protected IRepository<Word> words;
 
         public HomeController(IRepository<Word> wordsDb)
         {
-            this.wordsDb = wordsDb;
+            this.words = wordsDb;
         }
 
         public HomeController()
@@ -59,7 +59,7 @@ namespace Selftaught.Web.Controllers
 
         public ActionResult Index()
         {
-            var allWords = this.wordsDb.All();
+            var allWords = this.words.All();
 
             return View(allWords);
         }

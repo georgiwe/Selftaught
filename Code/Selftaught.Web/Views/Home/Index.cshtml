@@ -1,10 +1,17 @@
 ﻿@model IEnumerable<Selftaught.Data.Models.Word>
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
 @foreach (var word in @Model)
 {
-    <p>@word.Name</p>
+    <div class="row">
+        <div class="col-sm-6">
+            @word.Name
+        </div>
+        <div class="col-sm-6">
+            @word.Translations.Select(t => t.Meaning).Aggregate((m1, m2) => m1 + ", " + m2)
+        </div>
+    </div>
 }

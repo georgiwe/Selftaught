@@ -25,11 +25,6 @@ namespace Selftaught.Web.Controllers
             this.words = wordsDb;
         }
 
-        //public HomeController()
-        //    : this(new DeletableEntityRepository<Word>(new ApplicationDbContext()))
-        //{
-        //}
-
         public ActionResult CreateWord(WordViewModel newWord)
         {
             return null;
@@ -59,7 +54,7 @@ namespace Selftaught.Web.Controllers
 
         public ActionResult Index()
         {
-            var allWords = this.words.All();
+            var allWords = this.words.All().ToList();
 
             return View(allWords);
         }

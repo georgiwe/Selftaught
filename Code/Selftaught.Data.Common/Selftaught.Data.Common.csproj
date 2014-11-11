@@ -53,10 +53,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelAdditions\AuditInfo.cs" />
+    <Compile Include="ModelAdditions\DeletableEntity.cs" />
     <Compile Include="ModelAdditions\IAuditInfo.cs" />
-    <Compile Include="ModelAdditions\IDeletableEntry.cs" />
+    <Compile Include="ModelAdditions\IDeletableEntity.cs" />
     <Compile Include="ModelAdditions\IOrderable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DeletableEntityRepository.cs" />
+    <Compile Include="Repositories\IDeletableEntityRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

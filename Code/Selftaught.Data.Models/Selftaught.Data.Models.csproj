@@ -68,7 +68,12 @@
       <Project>{b4e8c574-49de-4114-8fe2-cd09272952dd}</Project>
       <Name>Selftaught.Data.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Selftaught.Web.Infrastructure\Selftaught.Web.Infrastructure.csproj">
+      <Project>{ef8f35a3-567a-4a70-adaf-57f4e173ae15}</Project>
+      <Name>Selftaught.Web.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

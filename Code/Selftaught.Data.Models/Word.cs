@@ -34,18 +34,13 @@
 
         public DateTime? LastPracticed { get; set; }
 
-
-
         public string AddedByUserId { get; set; }
 
         public virtual ApplicationUser AddedByUser { get; set; }
 
-
-
         public int LanguageId { get; set; }
 
         public virtual Language Language { get; set; }
-
 
         [Index]
         public bool IsDeleted { get; set; }

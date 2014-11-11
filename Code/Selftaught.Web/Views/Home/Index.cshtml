@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Selftaught.Data.Models.Word>
+﻿@model IEnumerable<Selftaught.Data.Models.ViewModels.WordDetailedViewModel>
 
 @{
     ViewBag.Title = "Home";
@@ -11,7 +11,7 @@
             @word.Name
         </div>
         <div class="col-sm-6">
-            @word.Translations.Select(t => t.Meaning).Aggregate((m1, m2) => m1 + ", " + m2)
+            @string.Join(", ", word.Translations.Select(t => t.Meaning))
         </div>
     </div>
 }

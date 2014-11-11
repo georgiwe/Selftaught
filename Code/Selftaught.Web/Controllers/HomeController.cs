@@ -8,10 +8,13 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
+using AutoMapper.QueryableExtensions;
+
 using Selftaught.Data;
 using Selftaught.Data.Models;
 using Selftaught.Web.Models;
 using Selftaught.Data.Common.Repositories;
+using Selftaught.Data.Models.ViewModels;
 
 namespace Selftaught.Web.Controllers
 {
@@ -54,7 +57,9 @@ namespace Selftaught.Web.Controllers
 
         public ActionResult Index()
         {
-            var allWords = this.words.All().ToList();
+            var allWords = this.words.All()
+                .Project()
+                .To<WordDetailedViewModel>();
 
             return View(allWords);
         }

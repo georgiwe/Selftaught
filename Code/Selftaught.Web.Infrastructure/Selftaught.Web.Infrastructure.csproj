@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModelMapping\AutoMapperConfiguration.cs" />
+    <Compile Include="ModelMapping\IRequiresCustomMapping.cs" />
+    <Compile Include="ModelMapping\IMapFrom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,10 +11,10 @@ using Microsoft.Owin.Security;
 using AutoMapper.QueryableExtensions;
 
 using Selftaught.Data;
-using Selftaught.Data.Models;
-using Selftaught.Web.Models;
 using Selftaught.Data.Common.Repositories;
-using Selftaught.Data.Models.ViewModels;
+using Selftaught.Data.Models;
+using Selftaught.Web.InputModels.Words;
+using Selftaught.Web.ViewModels.Words;
 
 namespace Selftaught.Web.Controllers
 {
@@ -31,28 +31,6 @@ namespace Selftaught.Web.Controllers
         public ActionResult CreateWord(WordViewModel newWord)
         {
             return null;
-
-            //var user = this.db.Users.Find(this.User.Identity.GetUserId());
-            ////var langName = (string)this.HttpContext.Session[LanguageSessionKey];
-            ////var language = this.db.Languages
-            ////    .FirstOrDefault(l => l.Name == langName);
-
-            //var language = new Language { Name = "German" };
-
-            //var word = new Word
-            //{
-            //    AddedByUser = user,
-            //    Language = language,
-            //    LastPracticed = DateTime.Now,
-            //    Name = newWord.Name,
-            //    PartOfSpeech = newWord.PartOfSpeech,
-            //    Translations = newWord.Translations
-            //};
-
-            //this.db.Words.Add(word);
-            //this.db.SaveChanges();
-
-            //return this.RedirectToAction("Index");
         }
 
         public ActionResult Index()

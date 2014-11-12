@@ -1,7 +1,8 @@
-﻿using Selftaught.Data.Models;
-using System.Collections.Generic;
-namespace Selftaught.Web.Models
+﻿namespace Selftaught.Web.InputModels.Words
 {
+    using Selftaught.Data.Models;
+    using System.Collections.Generic;
+
     public class WordViewModel
     {
         public string Name { get; set; }

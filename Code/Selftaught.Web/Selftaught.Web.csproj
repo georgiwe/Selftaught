@@ -185,9 +185,9 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="ViewModels\WordDetailedViewModel.cs" />
-    <Compile Include="ViewModels\WordTranslationViewModel.cs" />
-    <Compile Include="Models\WordViewModel.cs" />
+    <Compile Include="ViewModels\Words\WordDetailedViewModel.cs" />
+    <Compile Include="ViewModels\Words\WordTranslationViewModel.cs" />
+    <Compile Include="InputModels\Words\WordViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

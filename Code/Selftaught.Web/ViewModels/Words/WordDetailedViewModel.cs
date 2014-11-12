@@ -1,10 +1,11 @@
-﻿namespace Selftaught.Data.Models.ViewModels
+﻿namespace Selftaught.Web.ViewModels.Words
 {
     using System;
     using System.Collections.Generic;
 
     using AutoMapper;
 
+    using Selftaught.Data.Models;
     using Selftaught.Web.Infrastructure.ModelMapping;
 
     public class WordDetailedViewModel : IMapFrom<Word>

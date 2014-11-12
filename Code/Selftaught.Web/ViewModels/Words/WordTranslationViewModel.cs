@@ -1,9 +1,10 @@
-﻿namespace Selftaught.Data.Models.ViewModels
+﻿namespace Selftaught.Web.ViewModels.Words
 {
     using System.ComponentModel.DataAnnotations;
 
     using AutoMapper;
 
+    using Selftaught.Data.Models;
     using Selftaught.Web.Infrastructure.ModelMapping;
 
     public class WordTranslationViewModel : IRequiresCustomMapping

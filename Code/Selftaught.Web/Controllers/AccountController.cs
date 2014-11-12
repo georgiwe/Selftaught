@@ -10,6 +10,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Selftaught.Web.Models;
 using Selftaught.Data.Models;
+using Selftaught.Data.Common.Repositories;
+using System.Collections.Generic;
+using Selftaught.Data.DataAccess;
+using System.Threading;
 
 namespace Selftaught.Web.Controllers
 {
@@ -17,12 +21,14 @@ namespace Selftaught.Web.Controllers
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
+        private IUsersLanguagesData usersLanguagesData;
 
-        public AccountController()
+        public AccountController(IUsersLanguagesData usersLanguagesData)
         {
+            this.usersLanguagesData = usersLanguagesData;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -124,7 +130,7 @@ namespace Selftaught.Web.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -143,6 +149,9 @@ namespace Selftaught.Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            this.ViewData["Languages"] = this.usersLanguagesData.Languages.All()
+                .Select(l => l.Name)
+                .ToList();
             return View();
         }
 
@@ -155,12 +164,24 @@ namespace Selftaught.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var selectedLanguages = model.StudyingLanguages
+                    .SelectMany(l => this.usersLanguagesData.Languages.All().Where(lang => lang.Name == l))
+                    .ToList();
+
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    this.usersLanguagesData.Users.Find(user.Id).StudyingLanguages = selectedLanguages;
+                    this.usersLanguagesData.Users.SaveChanges();
+
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -173,6 +194,9 @@ namespace Selftaught.Web.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            this.ViewData["Languages"] = this.usersLanguagesData.Languages.All()
+                .Select(l => l.Name)
+                .ToList();
             return View(model);
         }
 

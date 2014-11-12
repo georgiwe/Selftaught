@@ -1,0 +1,34 @@
+﻿@using System.Collections.Generic;
+@model IEnumerable<string>
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("ChangeLanguage", "Languages", FormMethod.Post, new { id = "lang-form", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+
+                    @foreach (var langName in @Model)
+                    {
+                        string currName = null;
+
+                        if (this.Session["language"] != null)
+                        {
+                            currName = this.Session["language"].ToString();
+                        }
+                        // , new { @class = currName == langName ? "pull-left" : "" }
+                        <li>@Html.ActionLink(langName, "ChangeLanguage", "Languages", new { langName = langName, returnUrl = @Request.RawUrl }, new { @class = currName == langName ? "text-left" : "text-right" })</li>
+                    }
+
+                    <li class="divider"></li>
+
+                    <li>@Html.ActionLink("Manage Languages", "Manage", "Languages")</li>
+                </ul>
+            </li>
+        </ul>
+    }
+}

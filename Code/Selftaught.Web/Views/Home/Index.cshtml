@@ -1,17 +1,23 @@
-﻿@model IEnumerable<Selftaught.Web.ViewModels.Words.WordDetailedViewModel>
+﻿@using Selftaught.Web.ViewModels.Home
+
+@*@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@using Selftaught.Data.Models;
+@using Selftaught.Data;*@
+
+@model HomePageDataViewModel
 
 @{
     ViewBag.Title = "Home";
+
+    //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+    //var user = manager.FindById(User.Identity.GetUserId());
 }
 
-@foreach (var word in @Model)
-{
-    <div class="row">
-        <div class="col-sm-6">
-            @word.Name
-        </div>
-        <div class="col-sm-6">
-            @string.Join(", ", word.Translations.Select(t => t.Meaning))
-        </div>
+<h1>Current lang: @this.Session["language"]</h1>
+
+<div class="row">
+    <div class="col-md-4 pull-right text-center">
+        @Html.Partial("_TopWordsPartial", @Model.TopWords)
     </div>
-}
+</div>

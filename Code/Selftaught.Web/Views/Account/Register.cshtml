@@ -18,6 +18,17 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.StudyingLanguages, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <select class="form-control" multiple="multiple" name="StudyingLanguages">
+                @foreach (var languageName in (IEnumerable<string>)ViewData["Languages"])
+                {
+                    <option value="@languageName">@languageName</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })

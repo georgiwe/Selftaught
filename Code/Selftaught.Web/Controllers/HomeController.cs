@@ -14,46 +14,38 @@ using Selftaught.Data;
 using Selftaught.Data.Common.Repositories;
 using Selftaught.Data.Models;
 using Selftaught.Web.InputModels.Words;
+using Selftaught.Web.ViewModels.Home;
 using Selftaught.Web.ViewModels.Words;
 
 namespace Selftaught.Web.Controllers
 {
     public class HomeController : Controller
     {
-        protected const string LanguageSessionKey = "Language";
         protected IRepository<Word> words;
 
-        public HomeController(IRepository<Word> wordsDb)
+        public HomeController(IRepository<Word> words)
         {
-            this.words = wordsDb;
-        }
-
-        public ActionResult CreateWord(WordViewModel newWord)
-        {
-            return null;
+            this.words = words;
         }
 
         public ActionResult Index()
         {
-            var allWords = this.words.All()
+            this.Session["language"] = "German";
+
+            var rnd = new Random();
+
+            var topWords = this.words.All()
+                .OrderBy(r => Guid.NewGuid())
                 .Project()
-                .To<WordDetailedViewModel>();
+                .To<WordDetailedViewModel>()
+                .Take(6);
 
-            return View(allWords);
-        }
+            var vm = new HomePageDataViewModel
+            {
+                TopWords = topWords
+            };
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(vm);
         }
     }
 }

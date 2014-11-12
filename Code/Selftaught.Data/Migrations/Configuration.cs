@@ -23,46 +23,89 @@ namespace Selftaught.Data.Migrations
                 return;
             }
 
-            var rnd = new Random();
-            var german = new Language() { Name = "German" };
-            var user = new ApplicationUser()
+            var german = new Language { Name = "German" };
+            var path = @"D:\Repositories\Selftaught\Code\Selftaught.Data\GermanWords\final.txt";
+            var user = new ApplicationUser
             {
-                UserName = "wah@wah.wah",
-                Email = "wah@wah.wah"
+                UserName = "admin@admin.admin",
+                PasswordHash = "AE8InMXLvYe6WLscZ2HY5k5oxGxmGmc9+ZmUQ/TM5u7hs2FtFxQERS4FI4Kh7YAxNA==",
+                SecurityStamp = "63afc286-60e9-40fa-9d6c-54802ac16df3"
             };
 
-            for (int i = 0; i < 100; i++)
+            using (var sr = new System.IO.StreamReader(path))
             {
-                var newWord = new Word();
-                newWord.AddedByUser = user;
-                newWord.Language = german;
-                newWord.LastPracticed = DateTime.Now;
-                newWord.Name = string.Format("randomword{0}", i + 1);
-                newWord.PartOfSpeech = PartOfSpeech.Noun;
-                newWord.Translations = new List<WordTranslation>()
-                    {
-                        new WordTranslation() 
-                        { 
-                            Language = german, 
-                            Meaning = string.Format("meaning{0}", i + 1),
-                        }
-                    };
+                var line = "";
+                context.Configuration.AutoDetectChangesEnabled = false;
 
-                if (i % 4 == 0)
+                while ((line = sr.ReadLine()) != null)
                 {
-                    var transl = new WordTranslation
+                    var words = line.Split();
+                    var eng = words[0];
+                    var ger = words[1];
+
+                    if (char.IsUpper(ger[0]) == false)
                     {
+                        continue;
+                    }
+
+                    var wordToAdd = new Word
+                    {
+                        AddedByUser = user,
+                        CreatedOn = DateTime.Now,
                         Language = german,
-                        Meaning = string.Format("second meaning{0}", i + 1)
+                        LastPracticed = DateTime.Now,
+                        Name = eng,
+                        PartOfSpeech = PartOfSpeech.Noun,
+                        Translations = new HashSet<WordTranslation>() { new WordTranslation { LanguageId = 1, Meaning = ger, } },
                     };
 
-                    newWord.Translations.Add(transl);
+                    context.Words.Add(wordToAdd);
                 }
-
-                context.Words.Add(newWord);
             }
 
             context.SaveChanges();
+            context.Configuration.AutoDetectChangesEnabled = true;
+
+            //var rnd = new Random();
+            //var german = new Language() { Name = "German" };
+            //var user = new ApplicationUser()
+            //{
+            //    UserName = "wah@wah.wah",
+            //    Email = "wah@wah.wah"
+            //};
+
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    var newWord = new Word();
+            //    newWord.AddedByUser = user;
+            //    newWord.Language = german;
+            //    newWord.LastPracticed = DateTime.Now;
+            //    newWord.Name = string.Format("randomword{0}", i + 1);
+            //    newWord.PartOfSpeech = PartOfSpeech.Noun;
+            //    newWord.Translations = new List<WordTranslation>()
+            //        {
+            //            new WordTranslation() 
+            //            { 
+            //                Language = german, 
+            //                Meaning = string.Format("meaning{0}", i + 1),
+            //            }
+            //        };
+
+            //    if (i % 4 == 0)
+            //    {
+            //        var transl = new WordTranslation
+            //        {
+            //            Language = german,
+            //            Meaning = string.Format("second meaning{0}", i + 1)
+            //        };
+
+            //        newWord.Translations.Add(transl);
+            //    }
+
+            //    context.Words.Add(newWord);
+            //}
+
+            //context.SaveChanges();
         }
     }
 }

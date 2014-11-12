@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Selftaught.Data.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Selftaught.Web.Models
@@ -79,6 +80,10 @@ namespace Selftaught.Web.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Languages you would like to study")]
+        public IEnumerable<string> StudyingLanguages { get; set; }
     }
 
     public class ResetPasswordViewModel

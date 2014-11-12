@@ -20,6 +20,7 @@ namespace Selftaught.Data.Models
         {
             // This prevents UserManager.CreateAsync from throwing an exception
             this.CreatedOn = DateTime.Now;
+            this.StudyingLanguages = new HashSet<Language>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -40,5 +41,7 @@ namespace Selftaught.Data.Models
         public bool PreserveCreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
+
+        public virtual ICollection<Language> StudyingLanguages { get; set; }
     }
 }

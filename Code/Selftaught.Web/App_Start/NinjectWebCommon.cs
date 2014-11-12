@@ -13,6 +13,8 @@ namespace Selftaught.Web.App_Start
     using System.Data.Entity;
     using Selftaught.Data;
     using Selftaught.Data.Common.Repositories;
+    using Selftaught.Data.Models;
+    using Selftaught.Data.DataAccess;
 
     public static class NinjectWebCommon 
     {
@@ -65,6 +67,8 @@ namespace Selftaught.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<DbContext>().To<ApplicationDbContext>();
+            kernel.Bind<IUsersLanguagesData>().To<UsersLanguagesData>();
+            kernel.Bind(typeof(IRepository<Word>)).To(typeof(DeletableEntityRepository<Word>));
             kernel.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
             kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
         }        

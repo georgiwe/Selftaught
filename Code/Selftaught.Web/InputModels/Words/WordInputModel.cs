@@ -3,7 +3,7 @@
     using Selftaught.Data.Models;
     using System.Collections.Generic;
 
-    public class WordViewModel
+    public class WordInputModel
     {
         public string Name { get; set; }
 

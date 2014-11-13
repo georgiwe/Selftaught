@@ -67,10 +67,13 @@ namespace Selftaught.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<DbContext>().To<ApplicationDbContext>();
-            kernel.Bind<IUsersLanguagesData>().To<UsersLanguagesData>();
-            kernel.Bind(typeof(IRepository<Word>)).To(typeof(DeletableEntityRepository<Word>));
-            kernel.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
-            kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
+
+            kernel.Bind<ISelftaughtData>().To<SelftaughtData>().WithConstructorArgument(typeof(DbContext));
+
+            //kernel.Bind<IUsersLanguagesData>().To<UsersLanguagesData>();
+            //kernel.Bind(typeof(IRepository<Word>)).To(typeof(DeletableEntityRepository<Word>));
+            //kernel.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
+            //kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
         }        
     }
 }

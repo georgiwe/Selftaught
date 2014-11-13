@@ -1,9 +1,19 @@
-﻿@using Selftaught.Web.ViewModels.Words
-@model WordDetailedViewModel
+﻿@{
+    ViewBag.Title = "Learn new words in " + Session["language"];
+}
 
-<div class="row">
-    <h1>@Model.Name</h1>
+@if (Session["language"] == null)
+{
+    <h2>Please select a language</h2>
+}
+else
+{
+    <div class="row">
+        <h2>Learn new words in @Session["language"]!</h2>
+    </div>
+    
+    <div class="row">
 
-    <br />
+    </div>
+}
 
-</div>

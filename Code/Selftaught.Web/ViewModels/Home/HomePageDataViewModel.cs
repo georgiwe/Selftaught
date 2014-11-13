@@ -1,11 +1,14 @@
 ﻿namespace Selftaught.Web.ViewModels.Home
 {
-    using Selftaught.Web.ViewModels.Words;
     using System.Collections.Generic;
+
+    using Selftaught.Data.Models;
+    using Selftaught.Web.ViewModels.Words;
     
     public class HomePageDataViewModel
     {
         public IEnumerable<WordDetailedViewModel> TopWords { get; set; }
 
+        public IEnumerable<ApplicationUser> LatestUsers { get; set; }
     }
 }

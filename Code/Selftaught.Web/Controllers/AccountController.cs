@@ -21,11 +21,11 @@ namespace Selftaught.Web.Controllers
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
-        private IUsersLanguagesData usersLanguagesData;
+        private ISelftaughtData data;
 
-        public AccountController(IUsersLanguagesData usersLanguagesData)
+        public AccountController(ISelftaughtData data)
         {
-            this.usersLanguagesData = usersLanguagesData;
+            this.data = data;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -149,7 +149,7 @@ namespace Selftaught.Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            this.ViewData["Languages"] = this.usersLanguagesData.Languages.All()
+            this.ViewData["Languages"] = this.data.Languages.All()
                 .Select(l => l.Name)
                 .ToList();
             return View();
@@ -165,7 +165,7 @@ namespace Selftaught.Web.Controllers
             if (ModelState.IsValid)
             {
                 var selectedLanguages = model.StudyingLanguages
-                    .SelectMany(l => this.usersLanguagesData.Languages.All().Where(lang => lang.Name == l))
+                    .SelectMany(l => this.data.Languages.All().Where(lang => lang.Name == l))
                     .ToList();
 
                 var user = new ApplicationUser
@@ -177,8 +177,8 @@ namespace Selftaught.Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    this.usersLanguagesData.Users.Find(user.Id).StudyingLanguages = selectedLanguages;
-                    this.usersLanguagesData.Users.SaveChanges();
+                    this.data.Users.Find(user.Id).StudyingLanguages = selectedLanguages;
+                    this.data.Users.SaveChanges();
 
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
@@ -194,7 +194,7 @@ namespace Selftaught.Web.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            this.ViewData["Languages"] = this.usersLanguagesData.Languages.All()
+            this.ViewData["Languages"] = this.data.Languages.All()
                 .Select(l => l.Name)
                 .ToList();
             return View(model);

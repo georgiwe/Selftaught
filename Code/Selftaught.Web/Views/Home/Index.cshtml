@@ -1,23 +1,40 @@
 ﻿@using Selftaught.Web.ViewModels.Home
 
-@*@using Microsoft.AspNet.Identity;
-@using Microsoft.AspNet.Identity.EntityFramework;
-@using Selftaught.Data.Models;
-@using Selftaught.Data;*@
-
 @model HomePageDataViewModel
 
 @{
     ViewBag.Title = "Home";
-
-    //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-    //var user = manager.FindById(User.Identity.GetUserId());
 }
 
-<h1>Current lang: @this.Session["language"]</h1>
+<div class="jumbotron">
+    <h2>Welcome to Selftaught!</h2>
+    <p>A place to learn a new language with no teachers, deadlines or pressure.</p>
+</div>
 
 <div class="row">
-    <div class="col-md-4 pull-right text-center">
-        @Html.Partial("_TopWordsPartial", @Model.TopWords)
+
+    <div class="col-md-9">
+        <div class="list-group">
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">You choose what language to learn next.</h4>
+                <p class="list-group-item-text">It is up to you what language to take up, or leave behind. You can study multiple languages at once, if you like.</p>
+            </div>
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">You plan your own studies.</h4>
+                <p class="list-group-item-text">You are able to study as much, or as little, as you like at any time. You might study all day today. Or not study at all!</p>
+            </div>
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">We just nudge you along...</h4>
+                <p class="list-group-item-text">We make sure you don't forget entirely about your studies in subtle little ways. Just so you don't lose your edge.</p>
+            </div>
+        </div>
+
+        <p class="lead">Now go teach yourself!</p>
+    </div>
+
+    <div class="col-md-3 pull-right text-center">
+        @*@Html.Partial("_TopWordsPartial", @Model.TopWords)*@
+        @Html.Action("GetTopWords", "Words")
+        @Html.Action("GetLatestUsers", "Users")
     </div>
 </div>

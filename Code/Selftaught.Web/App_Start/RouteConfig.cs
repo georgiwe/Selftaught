@@ -15,7 +15,7 @@ namespace Selftaught.Web
 
             routes.MapRoute(
                 name: "Learn new Words",
-                url: "learn",
+                url: "words/learn",
                 defaults: new { controller = "Words", action = "Index" }
             );
 

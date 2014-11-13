@@ -1,37 +1,57 @@
 ﻿namespace Selftaught.Web.Controllers
 {
-    using Selftaught.Data.Common.Repositories;
-    using Selftaught.Data.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
 
-    public class LanguagesController : Controller
-    {
-        private IRepository<Language> languages;
+    using Microsoft.AspNet.Identity;
 
-        public LanguagesController(IRepository<Language> languages)
+    using Selftaught.Data.Common.Repositories;
+    using Selftaught.Data.DataAccess;
+    using Selftaught.Data.Models;
+
+    public class LanguagesController : BaseController
+    {
+        private const string LanguageNotFoundMsg = "The specified language was not found.";
+
+        public LanguagesController(ISelftaughtData data)
+            : base(data)
         {
-            this.languages = languages;
         }
 
         [ChildActionOnly]
         public PartialViewResult GetLanguageNames()
         {
-            var languageNames = this.languages.All()
+            IEnumerable<string> languageNames = null;
+
+            if (this.User.Identity.IsAuthenticated)
+            {
+                var userId = this.User.Identity.GetUserId();
+                var user = this.data.Users.Find(userId);
+
+                languageNames = user.StudyingLanguages.Select(l => l.Name);
+            }
+            else
+            {
+                languageNames = this.data.Languages.All()
                 .Select(l => l.Name)
                 .ToList();
+            }
 
             return PartialView("_ChangeLanguagePartial", languageNames);
         }
 
-        //[ValidateAntiForgeryToken]
         public ActionResult ChangeLanguage(string langName, string returnUrl)
         {
-            var newLang = this.languages.All().FirstOrDefault(l => l.Name == langName);
-            this.Session["language"] = newLang.Name;
+            var newLang = this.data.Languages.All()
+                .FirstOrDefault(l => l.Name == langName);
+
+            if (newLang == null)
+                this.TempData["error"] = LanguageNotFoundMsg;
+            else
+                this.Session["language"] = newLang.Name;
 
             return this.Redirect(returnUrl);
         }

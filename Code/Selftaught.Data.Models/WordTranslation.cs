@@ -1,5 +1,6 @@
 ﻿namespace Selftaught.Data.Models
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -21,6 +22,6 @@
         [Index]
         public bool IsDeleted { get; set; }
 
-        public System.DateTime? DeletedOn { get; set; }
+        public DateTime? DeletedOn { get; set; }
     }
 }

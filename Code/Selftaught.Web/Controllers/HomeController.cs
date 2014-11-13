@@ -29,10 +29,9 @@ namespace Selftaught.Web.Controllers
 
         public ActionResult Index()
         {
-            if (this.Session["language"] == null)
-            {
-                this.Session["language"] = "German";
-            }
+            var word = this.data.Words.Find(11305);
+            this.data.Words.Delete(word);
+            this.data.Words.SaveChanges();
 
             return View();
         }

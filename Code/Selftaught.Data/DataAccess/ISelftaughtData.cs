@@ -11,5 +11,7 @@ namespace Selftaught.Data.DataAccess
         IRepository<Word> Words { get; }
 
         IRepository<Language> Languages { get; }
+
+        IRepository<WordTranslation> Translations { get; }
     }
 }

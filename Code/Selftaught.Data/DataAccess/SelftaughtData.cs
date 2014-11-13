@@ -6,9 +6,10 @@ namespace Selftaught.Data.DataAccess
     public class SelftaughtData : ISelftaughtData
     {
         private DbContext context;
-        private Repository<ApplicationUser> users;
-        private Repository<Word> words;
-        private Repository<Language> languages;
+        private IRepository<ApplicationUser> users;
+        private IRepository<Word> words;
+        private IRepository<Language> languages;
+        private IRepository<WordTranslation> translations;
 
         public SelftaughtData(DbContext context)
         {
@@ -51,6 +52,19 @@ namespace Selftaught.Data.DataAccess
                 }
 
                 return this.languages;
+            }
+        }
+
+        public IRepository<WordTranslation> Translations
+        {
+            get
+            {
+                if (this.translations == null)
+                {
+                    this.translations = new DeletableEntityRepository<WordTranslation>(this.context);
+                }
+
+                return this.translations;
             }
         }
     }

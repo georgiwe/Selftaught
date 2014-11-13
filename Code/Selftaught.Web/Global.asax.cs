@@ -22,5 +22,10 @@ namespace Selftaught.Web
 
             new AutoMapperConfiguration(Assembly.GetExecutingAssembly()).Execute();
         }
+
+        protected void Session_Start()
+        {
+            HttpContext.Current.Session.Add("language", "German");
+        }
     }
 }

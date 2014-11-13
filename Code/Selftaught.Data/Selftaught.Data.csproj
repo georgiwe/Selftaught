@@ -76,9 +76,7 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="DataAccess\ISelftaughtData.cs" />
-    <Compile Include="DataAccess\IUsersLanguagesData.cs" />
     <Compile Include="DataAccess\SelftaughtData.cs" />
-    <Compile Include="DataAccess\UsersLanguagesData.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

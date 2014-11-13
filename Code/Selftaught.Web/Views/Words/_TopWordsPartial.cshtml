@@ -3,9 +3,10 @@
 @model IEnumerable<WordDetailedViewModel>
 
 @{
-    var firstColCount = Model.Count() / 2;
-    var leftColElems = Model.Take(firstColCount);
-    var rightColElems = Model.Skip(firstColCount);
+    var totalCount = Model.Count();
+    var firstColCount = totalCount / 2;
+    var leftColElems = totalCount > 1 ? Model.Take(firstColCount) : Model.Take(totalCount);
+    var rightColElems = totalCount > 1 ? Model.Skip(firstColCount) : Model.Take(0);
 }
 
 <div class="panel panel-primary">

@@ -33,7 +33,6 @@
     </div>
 
     <div class="col-md-3 pull-right text-center">
-        @*@Html.Partial("_TopWordsPartial", @Model.TopWords)*@
         @Html.Action("GetTopWords", "Words")
         @Html.Action("GetLatestUsers", "Users")
     </div>

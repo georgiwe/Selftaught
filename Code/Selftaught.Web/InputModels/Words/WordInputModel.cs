@@ -24,6 +24,10 @@
         public ICollection<WordTranslationViewModel> Translations { get; set; }
 
         [Required]
+        [UIHint("AttributesEditorTemplate")]
+        public ICollection<WordAttributeViewModel> Attributes { get; set; }
+
+        [Required]
         public PartOfSpeech PartOfSpeech { get; set; }
     }
 }

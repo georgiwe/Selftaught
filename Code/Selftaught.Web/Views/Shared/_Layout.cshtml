@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - Selftaught!</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @RenderSection("styles", required: false)
 </head>
 <body>
     <div class="navbar navbar-default navbar-fixed-top">
@@ -19,29 +19,45 @@
                 </button>
                 @Html.ActionLink("SELFTAUGHT", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Learn New Words", "Learn", "Words")</li>
 
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Add Word", "Add", "Words")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
-
                 @Html.Action("GetLanguageNames", "Languages")
             </div>
+
         </div>
     </div>
 
     @if (@TempData["success"] != null)
     {
-        <div class="alert alert-success">
-            @TempData["success"]
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="alert alert-success">
+                    @TempData["success"]
+                </div>
+            </div>
+            <div class="col-md-3"></div>
         </div>
     }
 
-    @if (@TempData["success"] != null)
+    @if (@TempData["error"] != null)
     {
-        <div class="alert alert-danger">
-            @TempData["error"]
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="alert alert-danger">
+                    @TempData["error"]
+                </div>
+            </div>
+            <div class="col-md-3"></div>
         </div>
     }
 
@@ -51,7 +67,7 @@
 
         <footer>
             <hr />
-            <p>&copy; @DateTime.Now.Year - Selftaught beta</p>
+            <p class="text-center">&copy; @DateTime.Now.Year - Selftaught beta</p>
         </footer>
     </div>
 

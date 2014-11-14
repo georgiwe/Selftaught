@@ -183,10 +183,13 @@
     <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\WordController.cs" />
     <Compile Include="Controllers\WordsController.cs" />
+    <Compile Include="Controllers\WordsScaffoldedController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="InputModels\Words\WordAttributeInputModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="ViewModels\Home\HomePageDataViewModel.cs" />
@@ -205,6 +208,14 @@
     <Content Include="Content\bootstrap.journal.css" />
     <Content Include="Content\bootstrap.journal.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.readable.css" />
+    <Content Include="Content\bootstrap.readable.min.css" />
+    <Content Include="Content\bootstrap.sandstone.css" />
+    <Content Include="Content\bootstrap.sandstone.min.css" />
+    <Content Include="Content\bootstrap.slate.css" />
+    <Content Include="Content\bootstrap.slate.min.css" />
+    <Content Include="Content\bootstrap.superhero.css" />
+    <Content Include="Content\bootstrap.superhero.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -214,6 +225,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -263,11 +276,20 @@
     <Content Include="Views\Words\Learn.cshtml" />
     <Content Include="Views\Users\_LatestUsersPartial.cshtml" />
     <Content Include="Views\Words\_LearnWordPartial.cshtml" />
-    <Content Include="Views\Words\Add.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
     <Content Include="Views\Words\EditorTemplates\WordInputModel.cshtml" />
     <Content Include="Views\Words\EditorTemplates\TranslationsEditorTemplate.cshtml" />
-    <Content Include="Views\Words\_AddNewWordPartial.cshtml" />
+    <Content Include="Views\Words\EditorTemplates\Word.cshtml" />
+    <Content Include="Views\Words\Add.cshtml" />
+    <Content Include="Views\Words\_WordAttributesPartial.cshtml" />
+    <Content Include="Views\WordsScaffolded\Create.cshtml" />
+    <Content Include="Views\WordsScaffolded\Delete.cshtml" />
+    <Content Include="Views\WordsScaffolded\Details.cshtml" />
+    <Content Include="Views\WordsScaffolded\Edit.cshtml" />
+    <Content Include="Views\WordsScaffolded\Index.cshtml" />
+    <Content Include="Views\Word\Create.cshtml" />
+    <Content Include="Views\Words\_WordTranslationsVMPartial.cshtml" />
+    <Content Include="Views\Words\EditorTemplates\WordTranslationViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -280,6 +302,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Selftaught.Common\Selftaught.Common.csproj">
+      <Project>{4b4aaae1-67ce-4071-956c-a7d5edbe9362}</Project>
+      <Name>Selftaught.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Selftaught.Data.Common\Selftaught.Data.Common.csproj">
       <Project>{b4e8c574-49de-4114-8fe2-cd09272952dd}</Project>
       <Name>Selftaught.Data.Common</Name>

@@ -1,8 +1,47 @@
-﻿@model Selftaught.Web.InputModels.Words.WordInputModel
+﻿@model Selftaught.Data.Models.Word
 
 @{
-    ViewBag.Title = "Add a new " + @Session["language"] + " word";
+    ViewBag.Title = "Add a new word";
 }
 
 <h2>@ViewBag.Title</h2>
 
+@Html.EditorForModel()
+
+
+<div>
+    @Html.ActionLink("Back to Home", "Index", "Home")
+</div>
+
+@section Scripts {
+    <script>
+        function getPartial() {
+            var $dd = $('#PartOfSpeech');
+            var $langdd = $('#LanguageId');
+
+            $dd.on('change', function () {
+                getPartial();
+            });
+
+            $langdd.on('change', function () {
+                getPartial();
+            });
+
+            var ddVal = $dd.find(':selected').text();
+            var lang = $langdd.find(':selected').text();
+
+            $.ajax({
+                type: 'GET',
+                url: 'GetAttributesPartial?pos=' + ddVal + '&lang=' + lang,
+                dataType: 'html',
+                success: function (data) {
+                    $('#attrs').html(data);
+                }
+            });
+        }
+
+        getPartial();
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

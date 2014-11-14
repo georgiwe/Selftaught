@@ -1,0 +1,12 @@
+﻿@{
+    for (int i = 0; i < 6; i++)
+    {
+        <div class="form-group">
+            <label for="[@i].Translation" class="control-label col-md-2">Translation @(i + 1)</label>
+            <div class="col-md-10">
+                <input class="form-control" type="text" name="[@i].Meaning" placeholder="Translation here..." />
+                @Html.ValidationMessage("[" + i + "].Meaning")
+            </div>
+        </div>
+    }
+}

@@ -1,5 +1,4 @@
-﻿
-namespace Selftaught.Data.DataAccess
+﻿namespace Selftaught.Data.DataAccess
 {
     using Selftaught.Data.Common.Repositories;
     using Selftaught.Data.Models;

@@ -6,13 +6,12 @@
 
     using Selftaught.Data.Models;
     using Selftaught.Web.Infrastructure.ModelMapping;
+    using System.Collections.Generic;
 
     public class WordTranslationViewModel : IRequiresCustomMapping
     {
-        [Required]
         public string Language { get; set; }
 
-        [Required]
         public string Meaning { get; set; }
 
         public void CreateMapping(IConfiguration configuration)

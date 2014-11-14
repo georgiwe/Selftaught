@@ -25,6 +25,8 @@
 
         public virtual DbSet<WordTranslation> Translations { get; set; }
 
+        public virtual IDbSet<WordAttribute> WordAttributes { get; set; }
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();

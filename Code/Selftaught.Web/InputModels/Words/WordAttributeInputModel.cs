@@ -1,11 +1,11 @@
-﻿namespace Selftaught.Web.ViewModels.Words
+﻿namespace Selftaught.Web.InputModels.Words
 {
     using System.ComponentModel.DataAnnotations;
 
     using Selftaught.Data.Models;
     using Selftaught.Web.Infrastructure.ModelMapping;
-
-    public class WordAttributeViewModel : IMapFrom<WordAttribute>
+    
+    public class WordAttributeInputModel : IMapFrom<WordAttribute>
     {
         [Required]
         public int Rank { get; set; }

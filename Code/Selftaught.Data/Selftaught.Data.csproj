@@ -77,6 +77,8 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="DataAccess\ISelftaughtData.cs" />
     <Compile Include="DataAccess\SelftaughtData.cs" />
+    <Compile Include="Factories\IWordAttributeFactory.cs" />
+    <Compile Include="Factories\WordAttributeFactory.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -85,6 +87,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Selftaught.Common\Selftaught.Common.csproj">
+      <Project>{4b4aaae1-67ce-4071-956c-a7d5edbe9362}</Project>
+      <Name>Selftaught.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Selftaught.Data.Common\Selftaught.Data.Common.csproj">
       <Project>{b4e8c574-49de-4114-8fe2-cd09272952dd}</Project>
       <Name>Selftaught.Data.Common</Name>

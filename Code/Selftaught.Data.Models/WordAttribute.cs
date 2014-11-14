@@ -6,7 +6,7 @@
 
     using Selftaught.Data.Common.ModelAdditions;
 
-    public class WordAttribute : AuditInfo, IDeletableEntity
+    public class WordAttribute : AuditInfo, IDeletableEntity, IComparable<WordAttribute>
     {
         [Key]
         public int Id { get; set; }
@@ -23,5 +23,10 @@
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        public int CompareTo(WordAttribute other)
+        {
+            return this.Rank.CompareTo(other.Rank);
+        }
     }
 }

@@ -1,41 +1,36 @@
 ﻿@using System.Collections.Generic;
 @model IEnumerable<string>
 
-@using (Html.BeginForm("ChangeLanguage", "Languages", FormMethod.Post, new { id = "lang-form", @class = "navbar-right" }))
-{
-    @Html.AntiForgeryToken()
+<ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages<b class="caret"></b></a>
+        <ul class="dropdown-menu">
 
-    <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages<b class="caret"></b></a>
-            <ul class="dropdown-menu">
+            @foreach (var langName in @Model)
+            {
+                string currName = null;
 
-                @foreach (var langName in @Model)
+                if (this.Session["language"] != null)
                 {
-                    string currName = null;
+                    currName = this.Session["language"].ToString();
+                }
 
-                    if (this.Session["language"] != null)
+                <li>
+                    @if (currName == langName)
                     {
-                        currName = this.Session["language"].ToString();
+                        <span class="glyphicon glyphicon-ok"></span>
                     }
 
-                    <li>
-                        @if (currName == langName)
-                        {
-                            <span class="glyphicon glyphicon-ok"></span>
-                        }
+                    @Html.ActionLink(langName, "ChangeLanguage", "Languages", new { langName = langName, returnUrl = @Request.RawUrl }, new { @class = "text-center", style = "display: block;" })
+                </li>
+            }
 
-                        @Html.ActionLink(langName, "ChangeLanguage", "Languages", new { langName = langName, returnUrl = @Request.RawUrl }, new { style = "display: block;" })
-                    </li>
-                }
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="divider"></li>
 
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <li class="divider"></li>
-
-                    <li>@Html.ActionLink("Manage Languages", "Manage", "Languages")</li>
-                }
-            </ul>
-        </li>
-    </ul>
-}
+                <li>@Html.ActionLink("Manage Languages", "Manage", "Languages")</li>
+            }
+        </ul>
+    </li>
+</ul>

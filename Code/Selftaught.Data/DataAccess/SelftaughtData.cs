@@ -10,6 +10,7 @@ namespace Selftaught.Data.DataAccess
         private IRepository<Word> words;
         private IRepository<Language> languages;
         private IRepository<WordTranslation> translations;
+        private IRepository<WordAttribute> wordAttributes;
 
         public SelftaughtData(DbContext context)
         {
@@ -66,6 +67,24 @@ namespace Selftaught.Data.DataAccess
 
                 return this.translations;
             }
+        }
+
+        public IRepository<WordAttribute> WordAttributes
+        {
+            get
+            {
+                if (this.wordAttributes == null)
+                {
+                    this.wordAttributes = new DeletableEntityRepository<WordAttribute>(this.context);
+                }
+
+                return this.wordAttributes;
+            }
+        }
+
+        public int SaveChanges()
+        {
+            return this.context.SaveChanges();
         }
     }
 }

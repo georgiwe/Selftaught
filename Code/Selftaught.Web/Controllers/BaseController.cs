@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Selftaught.Web.Controllers
 {
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
         protected ISelftaughtData data;
 

@@ -1,0 +1,48 @@
+﻿@using Selftaught.Web.ViewModels.Words;
+@using System.Collections.Generic;
+@model IEnumerable<WordShortViewModel>
+
+@{
+    ViewBag.Title = "Learn new words in " + Session["language"];
+}
+
+<div class="row">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <table class="text-center table table-striped table-hover table-condensed table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">Word</th>
+                    <th class="text-center">Translations</th>
+                    <th class="text-center">Details</th>
+                    <th class="text-center">I learned it!</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var word in Model)
+                    {
+                        <tr>
+                            @Html.Partial("_LearnWordPartial", word)
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4">There are no @Session["language"].ToString().ToLower() words yet...</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3"></div>
+</div>

@@ -20,8 +20,6 @@
             configuration.CreateMap<Word, WordShortViewModel>()
                 .ForMember(dest => dest.Translations,
                            opts => opts.MapFrom(src => src.Translations.Select(t => t.Meaning)));
-                           //dest => dest.Language,
-                           //opts => opts.MapFrom(src => src.Language.Name));
         }
     }
 }

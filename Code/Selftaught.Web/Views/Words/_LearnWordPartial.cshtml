@@ -1,0 +1,27 @@
+﻿@using Selftaught.Web.ViewModels.Words;
+@model WordShortViewModel
+
+@{
+    var url = "http://www.collinsdictionary.com/dictionary/english-german/";
+}
+
+<td>
+    @Model.Name
+</td>
+
+<td>
+    <ul class="list-inline">
+        @foreach (var translation in @Model.Translations)
+        {
+            <li>@translation</li>
+        }
+    </ul>
+</td>
+
+<td class="text-center">
+    <a href="@(url + @Model.Name)" class="btn btn-sm" target="_blank">Look it up</a>
+</td>
+
+<td>
+    @Html.ActionLink("Add to dictionary", "Add", "Words", new { name = @Model.Name }, new { @class = "btn btn-sm" })
+</td>

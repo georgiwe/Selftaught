@@ -19,6 +19,8 @@
 
         public ICollection<WordTranslationViewModel> Translations { get; set; }
 
+        public ICollection<WordAttributeViewModel> Attributes { get; set; }
+
         public PartOfSpeech PartOfSpeech { get; set; }
 
         public DateTime? LastPracticed { get; set; }

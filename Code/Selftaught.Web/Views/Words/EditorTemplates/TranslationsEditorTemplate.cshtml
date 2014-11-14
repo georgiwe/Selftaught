@@ -1,0 +1,8 @@
+﻿@using System.Collections.Generic;
+@using Selftaught.Web.ViewModels.Words;
+@model ICollection<WordTranslationViewModel>
+
+@foreach (var translation in Model)
+{
+    Html.TextBox("Translation");
+}

@@ -190,6 +190,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="ViewModels\Home\HomePageDataViewModel.cs" />
+    <Compile Include="ViewModels\Words\WordAttributeViewModel.cs" />
     <Compile Include="ViewModels\Words\WordDetailedViewModel.cs" />
     <Compile Include="ViewModels\Words\WordShortViewModel.cs" />
     <Compile Include="ViewModels\Words\WordTranslationViewModel.cs" />
@@ -259,13 +260,17 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Words\_TopWordsPartial.cshtml" />
     <Content Include="Views\Languages\_ChangeLanguagePartial.cshtml" />
-    <Content Include="Views\Words\Index.cshtml" />
+    <Content Include="Views\Words\Learn.cshtml" />
     <Content Include="Views\Users\_LatestUsersPartial.cshtml" />
+    <Content Include="Views\Words\_LearnWordPartial.cshtml" />
+    <Content Include="Views\Words\Add.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
+    <Content Include="Views\Words\EditorTemplates\WordInputModel.cshtml" />
+    <Content Include="Views\Words\EditorTemplates\TranslationsEditorTemplate.cshtml" />
+    <Content Include="Views\Words\_AddNewWordPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Base\" />
-    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

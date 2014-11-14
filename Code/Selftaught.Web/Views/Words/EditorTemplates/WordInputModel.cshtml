@@ -1,0 +1,13 @@
+﻿@model Selftaught.Web.InputModels.Words.WordInputModel
+
+@using (Html.BeginForm("Add", "Words", FormMethod.Post, new { @class = "form form-horizontal" }))
+{
+    Html.LabelFor(m => m.Name);
+    Html.EditorFor(m => m.Name);
+
+    Html.LabelFor(m => m.PartOfSpeech);
+    Html.EditorFor(m => m.PartOfSpeech);
+
+    Html.LabelFor(m => m.Translations);
+    Html.EditorFor(m => m.Translations);
+}

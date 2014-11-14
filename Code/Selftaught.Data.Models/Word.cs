@@ -1,18 +1,21 @@
 ﻿namespace Selftaught.Data.Models
 {
-    using Selftaught.Data.Common.ModelAdditions;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using Selftaught.Data.Common.ModelAdditions;
+
     public class Word : AuditInfo, IDeletableEntity
     {
         private ICollection<WordTranslation> translations;
+        private ICollection<WordAttribute> attributes;
 
         public Word()
         {
             this.translations = new HashSet<WordTranslation>();
+            this.attributes = new HashSet<WordAttribute>();
         }
 
         [Key]
@@ -20,6 +23,13 @@
 
         [Required]
         public string Name { get; set; }
+
+        public virtual ICollection<WordAttribute> Attributes
+        {
+            get { return this.attributes; }
+
+            set { this.attributes = value; }
+        }
 
         [Required]
         public virtual ICollection<WordTranslation> Translations

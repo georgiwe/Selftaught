@@ -11,12 +11,12 @@ using Microsoft.Owin.Security;
 using AutoMapper.QueryableExtensions;
 
 using Selftaught.Data;
+using Selftaught.Data.DataAccess;
 using Selftaught.Data.Common.Repositories;
 using Selftaught.Data.Models;
 using Selftaught.Web.InputModels.Words;
 using Selftaught.Web.ViewModels.Home;
 using Selftaught.Web.ViewModels.Words;
-using Selftaught.Data.DataAccess;
 
 namespace Selftaught.Web.Controllers
 {
@@ -29,10 +29,6 @@ namespace Selftaught.Web.Controllers
 
         public ActionResult Index()
         {
-            var word = this.data.Words.Find(11305);
-            this.data.Words.Delete(word);
-            this.data.Words.SaveChanges();
-
             return View();
         }
     }

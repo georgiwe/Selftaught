@@ -23,14 +23,63 @@ textarea {
     max-width: 280px;
 }
 
+
+#alert {
+    display: none;
+    position: absolute;
+    top: 80px;
+}
+
 .dropdown-menu > li {
     position: relative;
 }
 
-.dropdown-menu > li > .glyphicon {
-    font-size: 12px;
-    color: CaptionText;
-    top: 6px;
-    left: 25px;
+    .dropdown-menu > li > .glyphicon {
+        font-size: 12px;
+        color: CaptionText;
+        top: 6px;
+        left: 25px;
+        position: absolute;
+    }
+
+#words-listbox {
+    min-height: 150px;
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+#word-panel {
+    min-height: 150px;
+}
+
+.my-li {
+    display: block;
+}
+
+.word-detail-name {
+    font-weight: bold;
+}
+
+.hh {
+    font-size: 2.5em;
+    display: block;
+}
+
+#panel-head {
+    position: relative;
+}
+
+.lookup-btn {
     position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+#search-tb {
+    display: inline-block !important;
+    width: 200px;
+    height: 25px;
+}
+
+#search-cont {
 }

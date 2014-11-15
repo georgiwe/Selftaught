@@ -25,7 +25,7 @@
 
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Add Word", "Add", "Words")</li>
+                        @Html.Partial("_WordActionsPartial")
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -37,7 +37,7 @@
 
     @if (@TempData["success"] != null)
     {
-        <div class="row">
+        <div class="row text-center">
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div class="alert alert-success">
@@ -50,7 +50,7 @@
 
     @if (@TempData["error"] != null)
     {
-        <div class="row">
+        <div class="row text-center">
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div class="alert alert-danger">

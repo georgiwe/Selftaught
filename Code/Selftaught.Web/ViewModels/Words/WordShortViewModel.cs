@@ -20,6 +20,9 @@
             configuration.CreateMap<Word, WordShortViewModel>()
                 .ForMember(dest => dest.Translations,
                            opts => opts.MapFrom(src => src.Translations.Select(t => t.Meaning)));
+            configuration.CreateMap<WordShortViewModel, Word>()
+                .ForMember(dest => dest.Translations,
+                           opts => opts.MapFrom(src => src.Translations.Select(t => new WordTranslation { Meaning = t })));
         }
     }
 }

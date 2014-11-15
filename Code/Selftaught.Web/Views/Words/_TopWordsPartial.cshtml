@@ -1,6 +1,6 @@
 ﻿@using Selftaught.Web.ViewModels.Words
 @using System.Collections.Generic
-@model IEnumerable<WordDetailedViewModel>
+@model IEnumerable<WordShortViewModel>
 
 @{
     var totalCount = Model.Count();
@@ -25,14 +25,14 @@
                 <div class="col-md-6">
                     @foreach (var elem in leftColElems)
                     {
-                        @elem.Translations.First().Meaning <br />
+                         <div class="row">@elem.Translations.FirstOrDefault()</div>
                     }
                 </div>
                 
                 <div class="col-md-6">
                     @foreach (var elem in rightColElems)
                     {
-                        @elem.Translations.First().Meaning <br />
+                        <div class="row">@elem.Translations.FirstOrDefault()</div>
                     }
                 </div>
             }

@@ -1,0 +1,37 @@
+﻿@using Selftaught.Common.Extensions;
+@model Selftaught.Web.ViewModels.Words.WordDetailedViewModel
+
+@{
+    var url = "http://www.collinsdictionary.com/dictionary/english-german/";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading" id="panel-head">
+        <span class="hh">@Model.Name.ToTitleCase()</span>
+        <span class="label label-primary">@Session["language"]</span>
+        <span class="label label-info">@Model.PartOfSpeech</span>
+        <a href="@(url + @Model.Name)" class="label label-success lookup-btn" target="_blank">Look it up</a>
+    </div>
+    <div id="word-panel" class="panel-body">
+
+        <div class="col-md-6 col-sm-6 text-center">
+            @foreach (var def in Model.Translations)
+            {
+                <div class="row">
+                    <span class="word-detail-name">Meaning:</span>
+                    <span class="word-detail-content">@def.Meaning</span>
+                </div>
+            }
+        </div>
+
+        <div class="col-md-6 col-sm-6 text-center">
+            @foreach (var attr in Model.Attributes)
+            {
+                <div class="row">
+                    <span class="word-detail-name">@attr.Name:</span>
+                    <span class="word-detail-content">@attr.Value</span>
+                </div>
+            }
+        </div>
+    </div>
+</div>

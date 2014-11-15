@@ -9,13 +9,13 @@
 
     public class Word : AuditInfo, IDeletableEntity
     {
-        private ICollection<WordTranslation> translations;
-        private ICollection<WordAttribute> attributes;
+        private IList<WordTranslation> translations;
+        private IList<WordAttribute> attributes;
 
         public Word()
         {
-            this.translations = new HashSet<WordTranslation>();
-            this.attributes = new HashSet<WordAttribute>();
+            this.translations = new List<WordTranslation>();
+            this.attributes = new List<WordAttribute>();
         }
 
         [Key]
@@ -24,7 +24,7 @@
         [Required]
         public string Name { get; set; }
 
-        public virtual ICollection<WordAttribute> Attributes
+        public virtual IList<WordAttribute> Attributes
         {
             get { return this.attributes; }
 
@@ -32,7 +32,7 @@
         }
 
         [Required]
-        public virtual ICollection<WordTranslation> Translations
+        public virtual IList<WordTranslation> Translations
         {
             get { return this.translations; }
 

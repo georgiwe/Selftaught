@@ -7,10 +7,8 @@
 
     public class WordAttributeViewModel : IMapFrom<WordAttribute>
     {
-        [Required]
         public int Rank { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
         [Required]

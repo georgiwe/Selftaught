@@ -56,7 +56,7 @@ namespace Selftaught.Data.Migrations
                         LastPracticed = DateTime.Now,
                         Name = eng,
                         PartOfSpeech = PartOfSpeech.Noun,
-                        Translations = new HashSet<WordTranslation>() { new WordTranslation { LanguageId = 1, Meaning = ger, } },
+                        Translations = new List<WordTranslation>() { new WordTranslation { LanguageId = 1, Meaning = ger, } },
                     };
 
                     context.Words.Add(wordToAdd);

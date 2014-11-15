@@ -12,13 +12,16 @@
     {
         public string Language { get; set; }
 
+        [Required]
         public string Meaning { get; set; }
 
         public void CreateMapping(IConfiguration configuration)
         {
             configuration.CreateMap<WordTranslation, WordTranslationViewModel>()
                 .ForMember(dest => dest.Language,
-                           opts => opts.MapFrom(src => src.Language.Name));
+                           opts => opts.MapFrom(src => src.Language.Name))
+                .ForMember(dest => dest.Meaning,
+                           opts => opts.MapFrom(src => src.Meaning));
         }
     }
 }

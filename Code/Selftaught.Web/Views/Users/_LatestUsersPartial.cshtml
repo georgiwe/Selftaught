@@ -1,6 +1,6 @@
 ﻿@using System.Collections.Generic;
 @using Selftaught.Data.Models;
-@model IEnumerable<ApplicationUser>
+@model IEnumerable<string>
 
 <div class="panel panel-primary">
     <div class="panel-heading">
@@ -14,10 +14,10 @@
         }
         else
         {
-            foreach (var user in @Model)
+            foreach (var userName in @Model)
             {
                 <div class="row">
-                    @user.UserName
+                    @userName
                 </div>
             }
         }

@@ -20,6 +20,12 @@ namespace Selftaught.Web
             );
 
             routes.MapRoute(
+                name: "View all user words",
+                url: "words",
+                defaults: new { controller = "Words", Action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

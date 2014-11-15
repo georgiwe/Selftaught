@@ -1,5 +1,7 @@
 ﻿namespace Selftaught.Data.DataAccess
 {
+    using System.Data.Entity;
+
     using Selftaught.Data.Common.Repositories;
     using Selftaught.Data.Models;
 
@@ -14,6 +16,8 @@
         IRepository<WordTranslation> Translations { get; }
 
         IRepository<WordAttribute> WordAttributes { get; }
+
+        DbContext Context { get; }
 
         int SaveChanges();
     }

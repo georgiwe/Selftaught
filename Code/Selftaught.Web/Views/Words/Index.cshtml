@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Selftaught.Web.ViewModels.Words.WordDetailedViewModel>
+
+@{
+    ViewBag.Title = "All words you have added";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<div class="form-group-sm">
+    @Html.ActionLink("Add Word", "Add", null, new { @class = "btn btn-sm btn-default" })
+    <span id="search-cont" class="pull-right">
+        <input id="search-tb" class="form-control" type="text" placeholder="Filter pattern" />
+        <button id="filter-btn" class="btn btn-sm btn-default">Filter</button>
+    </span>
+</div>
+
+@{
+    var list = new SelectList(Model, "Id", "Name");
+}
+
+<br />
+
+<div class="row">
+    <div class="col-md-2 col-sm-3">
+        <div id="words-listbox" class="list-group">
+            @foreach (var item in Model)
+            {
+                @Ajax.ActionLink(item.Name, "GetWordDetailsPartial", new { id = item.Id }, new AjaxOptions
+                   {
+                       UpdateTargetId = "wordDetails",
+                       InsertionMode = InsertionMode.Replace,
+                       HttpMethod = "GET",
+                       AllowCache = true
+                   }, new { @class = "list-group-item" })
+            }
+        </div>
+    </div>
+
+    <div class="col-md-9 col-sm-8 pull-right">
+        <div id="wordDetails">
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script>
+        $('#filter-btn').on('click', function () {
+            var text = $('#search-tb').val();
+
+            $('.list-group-item').each(function (ind, elem) {
+                elem = $(elem);
+
+                if (!text) {
+                    elem.show();
+                    return;
+                }
+
+                if (elem.text().indexOf(text) < 0) {
+                    elem.hide();
+                }
+            });
+        });
+    </script>
+}

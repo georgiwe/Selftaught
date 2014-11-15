@@ -82,6 +82,11 @@ namespace Selftaught.Data.DataAccess
             }
         }
 
+        public DbContext Context
+        {
+            get { return this.context; }
+        }
+
         public int SaveChanges()
         {
             return this.context.SaveChanges();

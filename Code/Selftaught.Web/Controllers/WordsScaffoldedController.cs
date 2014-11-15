@@ -26,7 +26,7 @@ namespace Selftaught.Web.Controllers
         // GET: WordsScaffolded
         public ActionResult Index()
         {
-            var words = this.data.Words.All().Include(w => w.AddedByUser).Include(w => w.Language);
+            var words = this.data.Words.All().Include(w => w.AddedByUser).Include(w => w.Language).Take(10);
             return View(words.ToList());
         }
 

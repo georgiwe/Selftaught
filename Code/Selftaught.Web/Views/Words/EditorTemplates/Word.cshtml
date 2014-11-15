@@ -5,13 +5,12 @@
     @Html.AntiForgeryToken()
 
     <div class="row">
-        <hr />
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-7">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", value = ViewBag.Name } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
@@ -19,7 +18,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.PartOfSpeech, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-7">
                 @Html.EnumDropDownListFor(model => model.PartOfSpeech, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PartOfSpeech, "", new { @class = "text-danger" })
             </div>
@@ -27,16 +26,27 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.LanguageId, "LanguageId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-7">
                 @Html.DropDownList("LanguageId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.LanguageId, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        @Html.Partial("_WordTranslationsVMPartial")
-
         <div id="attrs">
         </div>
+
+        @{
+    for (int i = 0; i < 6; i++)
+    {
+        <div class="form-group">
+            <label for="[@i].Translation" class="control-label col-md-2">Meaning @(i + 1)</label>
+            <div class="col-md-7">
+                <input class="form-control" type="text" name="[@i].Meaning" placeholder="Translation here..." />
+                @Html.ValidationMessage("[" + i + "].Meaning")
+            </div>
+        </div>
+    }
+        }
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

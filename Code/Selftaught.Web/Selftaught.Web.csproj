@@ -183,7 +183,6 @@
     <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Controllers\WordController.cs" />
     <Compile Include="Controllers\WordsController.cs" />
     <Compile Include="Controllers\WordsScaffoldedController.cs" />
     <Compile Include="Global.asax.cs">
@@ -193,6 +192,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="ViewModels\Home\HomePageDataViewModel.cs" />
+    <Compile Include="ViewModels\Language\LanguageViewModel.cs" />
     <Compile Include="ViewModels\Words\WordAttributeViewModel.cs" />
     <Compile Include="ViewModels\Words\WordDetailedViewModel.cs" />
     <Compile Include="ViewModels\Words\WordShortViewModel.cs" />
@@ -287,9 +287,11 @@
     <Content Include="Views\WordsScaffolded\Details.cshtml" />
     <Content Include="Views\WordsScaffolded\Edit.cshtml" />
     <Content Include="Views\WordsScaffolded\Index.cshtml" />
-    <Content Include="Views\Word\Create.cshtml" />
-    <Content Include="Views\Words\_WordTranslationsVMPartial.cshtml" />
     <Content Include="Views\Words\EditorTemplates\WordTranslationViewModel.cshtml" />
+    <Content Include="Views\Shared\_WordActionsPartial.cshtml" />
+    <Content Include="Views\Words\Edit.cshtml" />
+    <Content Include="Views\Words\_EditWordPartial.cshtml" />
+    <Content Include="Views\Words\EditorTemplates\WordAttributeViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

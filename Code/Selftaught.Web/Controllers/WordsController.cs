@@ -8,17 +8,20 @@
 
     using AutoMapper.QueryableExtensions;
 
-    using Selftaught.Data.DataAccess;
-    using Selftaught.Web.ViewModels.Words;
     using Selftaught.Common.Extensions;
+    using Selftaught.Data.DataAccess;
     using Selftaught.Data.Models;
     using Selftaught.Data.Factories;
     using Selftaught.Web.InputModels.Words;
+    using Selftaught.Web.Infrastructure.CustomAttributes;
+    using Selftaught.Web.ViewModels.Words;
 
     public class WordsController : BaseController
     {
         private const string WrongLanguageMsg = "The specified language is not supported currently.";
         private const string WordCreatedMsg = "Word added successfully!";
+        private const string WordUpdatedMsg = "Word updated successfully";
+        private const string ErroneousInput = "Please add at least one translation and all word articles";
 
         private IWordAttributeFactory wordAttrsFact;
 
@@ -53,6 +56,7 @@
 
             if (!ModelState.IsValid)
             {
+                TempData["error"] = ErroneousInput;
                 ViewBag.LanguageId = new SelectList(user.StudyingLanguages, "Id", "Name", string.Empty);
                 return View(newWord);
             }
@@ -62,6 +66,43 @@
 
             TempData["success"] = WordCreatedMsg;
             return RedirectToAction("Add");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        [Authorize]
+        public ActionResult GetEditPartial(string wordName)
+       {
+            var user = this.GetCurrentUser();
+            var word = this.data.Words.All()
+                .Where(w => w.AddedByUserId == user.Id)
+                .Project()
+                .To<WordDetailedViewModel>()
+                .FirstOrDefault(w => w.Name.ToLower() == wordName.ToLower());
+
+            if (word == null)
+            {
+                return HttpNotFound();
+            }
+
+            word.Languages = new SelectList(user.StudyingLanguages.ToList(), "Id", "Name", word.Language);
+
+            return PartialView("_EditWordPartial", word);
+        }
+
+        public ActionResult Edit(WordDetailedViewModel model)
+        {
+            var r = ModelState.IsValid;
+
+            TempData["success"] = WordUpdatedMsg;
+            return View();
         }
 
         [HttpGet]
@@ -84,31 +125,13 @@
         [ChildActionOnly]
         public PartialViewResult GetTopWords()
         {
-            if (this.HttpContext.Cache["topwords"] == null)
-            {
-                var currLang = this.Session["language"].ToString().ToLower();
-
-                var words = this.data.Words.All()
-                    .Where(w => w.Language.Name.ToLower() == currLang)
-                    .OrderBy(r => Guid.NewGuid())
-                    .Project()
-                    .To<WordDetailedViewModel>()
-                    .Take(6)
-                    .ToList();
-
-                this.HttpContext.Cache.Add(
-                    "topwords", words, null,
-                    DateTime.Now.AddHours(24),
-                    TimeSpan.Zero,
-                    CacheItemPriority.Default, null);
-            }
-
+            this.GetTopWordsAndCacheIfNotCached();
             var topWords = this.HttpContext.Cache["topwords"];
             return PartialView("_TopWordsPartial", topWords);
         }
 
-        [Authorize]
         [HttpGet]
+        [Authorize]
         public PartialViewResult GetAttributesPartial(string lang, string pos)
         {
             if (!this.data.Languages.All().Any(l => l.Name.ToLower() == lang.ToLower()))
@@ -138,7 +161,7 @@
             word.LastPracticed = DateTime.Now;
 
             word.Attributes = attributes.AsQueryable()
-                .Where(a => a.Name != null)
+                .Where(a => a.Value != null)
                 .Project().To<WordAttribute>().ToList();
 
             word.Translations = translations
@@ -151,20 +174,43 @@
 
         protected void ClearMeaningErrors(Word word)
         {
-            if (word.Translations.Count > 0)
+            if (word.Translations.Count == 0)
             {
-                var meaningErrors = ModelState.Keys
-                    .Where(k => k.Contains("Meaning"))
-                    .ForEach(k => ModelState[k].Errors.Clear());
+                return;
             }
+
+            ModelState.Keys
+                .Where(k => k.Contains("Meaning"))
+                .ForEach(k => ModelState[k].Errors.Clear());
 
             if (word.Attributes.Count > 0 ||
                 word.PartOfSpeech == PartOfSpeech.Adjective)
             {
-                var meaningErrors = ModelState.Keys
+                ModelState.Keys
                     .Where(k => k.Contains("Value") || k.Contains("Name"))
                     .ForEach(k => ModelState[k].Errors.Clear());
             }
+        }
+
+        protected void GetTopWordsAndCacheIfNotCached()
+        {
+            if (this.HttpContext.Cache["topwords"] != null)
+            {
+                return;
+            }
+
+            var currLang = this.Session["language"].ToString().ToLower();
+
+            var words = this.data.Words.All()
+                .Where(w => w.Language.Name.ToLower() == currLang)
+                .OrderBy(r => Guid.NewGuid())
+                .Project()
+                .To<WordShortViewModel>()
+                .Take(6)
+                .ToList();
+
+            this.HttpContext.Cache.Add("topwords", words, null,
+                DateTime.Now.AddHours(24), TimeSpan.Zero, CacheItemPriority.Default, null);
         }
     }
 }

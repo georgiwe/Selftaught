@@ -18,7 +18,9 @@
         {
             configuration.CreateMap<WordTranslation, WordTranslationViewModel>()
                 .ForMember(dest => dest.Language,
-                           opts => opts.MapFrom(src => src.Language.Name));
+                           opts => opts.MapFrom(src => src.Language.Name))
+                .ForMember(dest => dest.Meaning,
+                           opts => opts.MapFrom(src => src.Meaning));
         }
     }
 }

@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Edit Word";
+}
+
+@section styles{
+    <style>
+        #alert {
+            display: none;
+            position: absolute;
+            top: 80px;
+        }
+    </style>
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div id="alert" class="col-md-6 text-center alert alert-danger"></div>
+    <div class="col-md-3"></div>
+</div>
+
+@{
+    using (Ajax.BeginForm("GetEditPartial", "Words", new AjaxOptions
+        {
+            AllowCache = false,
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "word",
+            OnFailure = "NotFound"
+        }))
+    {
+        Html.AntiForgeryToken();
+        <div class="form-group">
+            <label class="control-label">Word:</label>
+            <input required="required" type="text" name="wordName" class="form-control" placeholder="Word Name" />
+        </div>
+        <input type="submit" class="btn btn-default" value="Search" />
+    }
+}
+
+<div id="word">
+
+</div>
+
+@section Scripts {
+    <script>
+        var alertDiv = $('#alert').hide();
+
+        function NotFound() {
+            alertDiv.show();
+
+            alertDiv.text("Word was not found");
+
+            setTimeout(function () {
+                alertDiv.fadeOut(1500);
+            }, 3000);
+        }
+    </script>
+}

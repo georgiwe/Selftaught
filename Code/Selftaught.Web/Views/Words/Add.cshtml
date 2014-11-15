@@ -6,6 +6,8 @@
 
 <h2>@ViewBag.Title</h2>
 
+<hr />
+
 @Html.EditorForModel()
 
 
@@ -33,7 +35,6 @@
             $.ajax({
                 type: 'GET',
                 url: 'GetAttributesPartial?pos=' + ddVal + '&lang=' + lang,
-                dataType: 'html',
                 success: function (data) {
                     $('#attrs').html(data);
                 }

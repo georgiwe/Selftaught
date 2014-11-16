@@ -22,7 +22,10 @@
         private const string WordCreatedMsg = "Word added successfully!";
         private const string WordUpdatedMsg = "Word updated successfully";
         private const string ErroneousInput = "Please add at least one translation and all word articles";
+<<<<<<< HEAD
         private const string InvalidWordDataMsg = "Invalid word data";
+=======
+>>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
 
         private IWordAttributeFactory wordAttrsFact;
 
@@ -115,9 +118,14 @@
 
         [HttpGet]
         [Authorize]
+<<<<<<< HEAD
         public ActionResult Edit(string wordName)
         {
             ViewBag.WordName = wordName;
+=======
+        public ActionResult Edit()
+        {
+>>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
             return View();
         }
 
@@ -125,10 +133,19 @@
         [AjaxOnly]
         [Authorize]
         public ActionResult GetEditPartial(string wordName)
+<<<<<<< HEAD
         {
             var user = this.GetCurrentUser();
             var word = this.data.Words.All()
                 .Where(w => w.AddedByUserId == user.Id)
+=======
+       {
+            var user = this.GetCurrentUser();
+            var word = this.data.Words.All()
+                .Where(w => w.AddedByUserId == user.Id)
+                .Project()
+                .To<WordDetailedViewModel>()
+>>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
                 .FirstOrDefault(w => w.Name.ToLower() == wordName.ToLower());
 
             if (word == null)
@@ -136,11 +153,16 @@
                 return HttpNotFound();
             }
 
+<<<<<<< HEAD
             ViewBag.LanguageId = new SelectList(user.StudyingLanguages.ToList(), "Id", "Name", string.Empty);
+=======
+            word.Languages = new SelectList(user.StudyingLanguages.ToList(), "Id", "Name", word.Language);
+>>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
 
             return PartialView("_EditWordPartial", word);
         }
 
+<<<<<<< HEAD
         [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Word model)
@@ -163,11 +185,17 @@
             word.LastPracticed = DateTime.Now;
 
             this.data.SaveChanges();
+=======
+        public ActionResult Edit(WordDetailedViewModel model)
+        {
+            var r = ModelState.IsValid;
+>>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
 
             TempData["success"] = WordUpdatedMsg;
             return View();
         }
 
+<<<<<<< HEAD
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -188,6 +216,8 @@
             return View("Edit");
         }
 
+=======
+>>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
         [HttpGet]
         public ActionResult Learn()
         {
@@ -295,6 +325,7 @@
             this.HttpContext.Cache.Add("topwords", words, null,
                 DateTime.Now.AddHours(24), TimeSpan.Zero, CacheItemPriority.Default, null);
         }
+<<<<<<< HEAD
 
         protected void ClearTranslationErrors()
         {
@@ -308,5 +339,7 @@
             var langName = Session["language"].ToString().ToLower();
             return langName;
         }
+=======
+>>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
     }
 }

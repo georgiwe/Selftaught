@@ -292,8 +292,11 @@
     <Content Include="Views\Words\Edit.cshtml" />
     <Content Include="Views\Words\_EditWordPartial.cshtml" />
     <Content Include="Views\Words\EditorTemplates\WordAttributeViewModel.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Words\Index.cshtml" />
     <Content Include="Views\Words\_WordDetailsPartial.cshtml" />
+=======
+>>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

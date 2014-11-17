@@ -31,7 +31,7 @@
     </div>
 
     <div class="col-md-3 pull-right text-center">
-        @Html.Action("GetTopWords", "Words")
-        @Html.Action("GetLatestUsers", "Users")
+        @Html.Action("GetTopWords", "Words", new { area = string.Empty })
+        @Html.Action("GetLatestUsers", "Users", new { area = string.Empty })
     </div>
 </div>

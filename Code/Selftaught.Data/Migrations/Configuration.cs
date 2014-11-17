@@ -6,6 +6,8 @@ namespace Selftaught.Data.Migrations
     using System.Linq;
 
     using Selftaught.Data.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
@@ -23,6 +25,25 @@ namespace Selftaught.Data.Migrations
                 return;
             }
 
+            // Roles
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
+            var adminRole = new IdentityRole { Name = "Admin" };
+            roleManager.Create(adminRole);
+            context.SaveChanges();
+
+            // Admin
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var admin = new ApplicationUser()
+            {
+                UserName = "admin@site.com"
+            };
+
+            manager.Create(admin, "qweqwe");
+            manager.AddToRole(admin.Id, "Admin");
+            context.SaveChanges();
+
+            // Words
             var german = new Language { Name = "German" };
             var path = @"D:\Repositories\Selftaught\Code\Selftaught.Data\GermanWords\final.txt";
             var user = new ApplicationUser

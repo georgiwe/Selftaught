@@ -8,7 +8,7 @@
 <hr />
 
 <div class="form-group-sm">
-    @Html.ActionLink("Add Word", "Add", null, new { @class = "btn btn-sm btn-default" })
+    @Html.ActionLink("Add Word", "Add", new { area = string.Empty }, new { @class = "btn btn-sm btn-default" })
     <span id="search-cont" class="pull-right">
         <input id="search-tb" class="form-control" type="text" placeholder="Filter pattern" />
         <button id="filter-btn" class="btn btn-sm btn-default">Filter</button>
@@ -24,9 +24,15 @@
 <div class="row">
     <div class="col-md-2 col-sm-3">
         <div id="words-listbox" class="list-group">
+
+            @if (!Model.Any())
+            {
+                <span class="text-info">No @Session["language"] words.</span>
+            }
+
             @foreach (var item in Model)
             {
-                @Ajax.ActionLink(item.Name, "GetWordDetailsPartial", new { id = item.Id }, new AjaxOptions
+                @Ajax.ActionLink(item.Name, "GetWordDetailsPartial",  new { id = item.Id, area = string.Empty }, new AjaxOptions
                    {
                        UpdateTargetId = "wordDetails",
                        InsertionMode = InsertionMode.Replace,

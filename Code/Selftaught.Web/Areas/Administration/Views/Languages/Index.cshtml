@@ -1,0 +1,17 @@
+﻿@using Selftaught.Web.Infrastructure.Helpers;
+@using Selftaught.Web.ViewModels.Language;
+
+@{
+    ViewBag.Title = "Administrate Languages";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@(Html.FullFeaturedGrid<LanguageViewModel>("Languages", m => m.Id, c =>
+{
+    c.Bound(m => m.Id).Hidden();
+    c.Bound(m => m.Name);
+
+    c.Command(cmd => cmd.Edit());
+    c.Command(cmd => cmd.Destroy());
+}))

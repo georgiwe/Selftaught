@@ -11,6 +11,7 @@ using Selftaught.Data.Models;
 
 namespace Selftaught.Web.Controllers
 {
+    [HandleError]
     public abstract class BaseController : Controller
     {
         protected ISelftaughtData data;

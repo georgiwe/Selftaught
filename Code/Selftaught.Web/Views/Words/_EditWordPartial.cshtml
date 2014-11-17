@@ -1,17 +1,10 @@
-<<<<<<< HEAD
-﻿@model Selftaught.Data.Models.Word
-=======
-﻿@model Selftaught.Web.ViewModels.Words.WordDetailedViewModel
->>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
+@model Selftaught.Web.ViewModels.Words.WordDetailedViewModel
 
 @using (@Html.BeginForm("Edit", "Words", FormMethod.Post, new { @class = "form form-horizontal" }))
 {
     @Html.AntiForgeryToken()
-<<<<<<< HEAD
     @Html.ValidationSummary()
     @Html.HiddenFor(m => m.Id)
-=======
->>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
 
     <div class="form-group">
         @Html.LabelFor(m => m.Name, new { @class = "control-label col-md-2" })
@@ -21,34 +14,6 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-    @*<div class="form-group">
-        @Html.LabelFor(m => m.Language, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Language, (IEnumerable<SelectListItem>)ViewBag.LanguageId, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Language)
-        </div>
-    </div>*@
-
-    @*<div class="form-group">
-=======
-    <div class="form-group">
-        @Html.LabelFor(m => m.Language, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Language, Model.Languages, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Language)
-        </div>
-    </div>
-
-    <div class="form-group">
->>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
-        @Html.LabelFor(m => m.PartOfSpeech, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EnumDropDownListFor(m => m.PartOfSpeech, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.PartOfSpeech)
-        </div>
-<<<<<<< HEAD
-    </div>*@
 
     for (int i = 0; i < Model.Attributes.Count; i++)
     {
@@ -58,8 +23,9 @@
                 @Html.TextBoxFor(m => m.Attributes[i].Value, new { @class = "form-control" })
                 @Html.HiddenFor(m => m.Attributes[i].Name)
                 @Html.ValidationMessageFor(m => m.Attributes[i].Value)
-=======
-    </div>
+            </div>
+        </div>
+    }
 
     foreach (var attr in Model.Attributes)
     {
@@ -68,12 +34,10 @@
             <div class="col-md-10">
                 @Html.TextBoxFor(m => attr.Value, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Attributes)
->>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
             </div>
         </div>
     }
 
-<<<<<<< HEAD
     for (int i = 0; i < Model.Translations.Count; i++)
     {
         <div class="form-group">
@@ -81,33 +45,17 @@
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.Translations[i].Meaning, new { @class = "form-control form-label" })
                 @Html.ValidationMessageFor(m => m.Translations[i].Meaning)
-=======
-    foreach (var transl in Model.Translations)
+            </div>
+        </div>
+    }
+
+    @*foreach (var transl in Model.Translations)
     {
         <div class="form-group">
             <label class="control-label col-md-2">Translation</label>
             <div class="col-md-10">
                 @Html.TextBoxFor(m => transl.Meaning, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Translations)
->>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
-            </div>
-        </div>
-    }
-
-    @*for (int i = 0; i < 6 - Model.Translations.Count; i++)
-    {
-        <div class="form-group">
-<<<<<<< HEAD
-            @Html.LabelFor(m => m.Translations[i].Meaning, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input class="form-control" type="text" name="Translations[@(6 - Model.Translations.Count - i)].Meaning" />
-                @Html.ValidationMessageFor(m => m.Translations[i].Meaning)
-=======
-            <label class="control-label col-md-2">Translation</label>
-            <div class="col-md-10">
-                
-                @Html.TextBox("transl.Meaning", string.Empty, new { @class = "form-control" })
->>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
             </div>
         </div>
     }*@
@@ -115,15 +63,12 @@
     <div class="form-group">
         <input type="submit" value="Save" class="btn btn-default" />
     </div>
-<<<<<<< HEAD
 }
 
 @using (Html.BeginForm("Delete", "Words", FormMethod.Post, new { @class = "form form-horizontal" }))
 {
     @Html.AntiForgeryToken()
     @Html.Hidden("id", Model.Id)
-    
+
     <input type="submit" value="Delete" class="btn btn-danger" />
-=======
->>>>>>> 80587a54c5a2f5d966c43f2895b73cb028661095
 }

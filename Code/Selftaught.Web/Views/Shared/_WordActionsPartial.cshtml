@@ -2,10 +2,10 @@
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Words<b class="caret"></b></a>
         <ul class="dropdown-menu ">
-            <li class="text-center">@Html.ActionLink("View Mine", "Index", "Words")</li>
-            <li class="text-center">@Html.ActionLink("Add Word", "Add", "Words")</li>
-            <li class="text-center">@Html.ActionLink("Edit Word", "Edit", "Words")</li>
-            <li class="text-center">@Html.ActionLink("Dictionary", "Dictionary", "Words")</li>
+            <li class="text-center">@Html.ActionLink("View Mine", "Index", "Words", new { area = string.Empty }, null)</li>
+            <li class="text-center">@Html.ActionLink("Add Word", "Add", "Words", new { area = string.Empty }, null)</li>
+            <li class="text-center">@Html.ActionLink("Edit Word", "Edit", "Words", new { area = string.Empty }, null)</li>
+            <li class="text-center">@Html.ActionLink("Dictionary", "Dictionary", "Words", new { area = string.Empty }, null)</li>
         </ul>
     </li>
 </ul>

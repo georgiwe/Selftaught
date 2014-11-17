@@ -16,19 +16,22 @@ namespace Selftaught.Web
             routes.MapRoute(
                 name: "Learn new Words",
                 url: "words/learn",
-                defaults: new { controller = "Words", action = "Learn" }
+                defaults: new { controller = "Words", action = "Learn" },
+                namespaces: new[] { "Selftaught.Web.Controllers" }
             );
 
             routes.MapRoute(
                 name: "View all user words",
                 url: "words",
-                defaults: new { controller = "Words", Action = "Index" }
+                defaults: new { controller = "Words", Action = "Index", },
+                namespaces: new[] { "Selftaught.Web.Controllers" }
             );
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional, },
+                namespaces: new[] { "Selftaught.Web.Controllers" }
             );
         }
     }

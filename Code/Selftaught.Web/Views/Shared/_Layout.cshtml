@@ -31,8 +31,11 @@
                         {
                             @Html.Partial("_AdminPanelPartial");
                         }
-                        
+
                         @Html.Partial("_WordActionsPartial")
+                        
+                        <li>@Html.ActionLink("Take a Quiz", "Index", "Quizzes")</li>
+
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -42,33 +45,21 @@
         </div>
     </div>
 
-    @if (@TempData["success"] != null)
-    {
-        <div class="row text-center">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <div class="alert alert-success">
-                    @TempData["success"]
-                </div>
-            </div>
-            <div class="col-md-3"></div>
-        </div>
-    }
-
-    @if (@TempData["error"] != null)
-    {
-        <div class="row text-center">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <div class="alert alert-danger">
-                    @TempData["error"]
-                </div>
-            </div>
-            <div class="col-md-3"></div>
-        </div>
-    }
-
     <div class="container body-content">
+
+        @if (TempData["success"] != null)
+        {
+            <div class="row alert alert-success text-center">
+                @TempData["success"]
+            </div>
+        }
+
+        @if (@TempData["error"] != null)
+        {
+            <div class="row alert alert-danger text-center">
+                @TempData["error"]
+            </div>
+        }
 
         @RenderBody()
 

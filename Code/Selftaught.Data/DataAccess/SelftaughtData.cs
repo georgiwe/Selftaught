@@ -11,6 +11,8 @@ namespace Selftaught.Data.DataAccess
         private IRepository<Language> languages;
         private IRepository<WordTranslation> translations;
         private IRepository<WordAttribute> wordAttributes;
+        private IRepository<Quiz> quizzes;
+        private IRepository<QuizQuestion> quizQuestions;
 
         public SelftaughtData(DbContext context)
         {
@@ -79,6 +81,32 @@ namespace Selftaught.Data.DataAccess
                 }
 
                 return this.wordAttributes;
+            }
+        }
+
+        public IRepository<Quiz> Quizzes
+        {
+            get
+            {
+                if (this.quizzes == null)
+                {
+                    this.quizzes = new DeletableEntityRepository<Quiz>(this.context);
+                }
+
+                return quizzes;
+            }
+        }
+
+        public IRepository<QuizQuestion> QuizQuestions
+        {
+            get
+            {
+                if (this.quizQuestions == null)
+                {
+                    this.quizQuestions = new DeletableEntityRepository<QuizQuestion>(this.context);
+                }
+
+                return quizQuestions;
             }
         }
 

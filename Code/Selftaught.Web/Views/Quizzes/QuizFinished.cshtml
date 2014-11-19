@@ -1,0 +1,12 @@
+﻿@using System.Collections.Generic;
+@using Selftaught.Web.ViewModels.Quizzes;
+@model  IList<QuizQuestionViewModel>
+
+@{
+    ViewBag.Title = "Quiz Complete";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+@Html.Partial("QuizQuestionViewModelTable")

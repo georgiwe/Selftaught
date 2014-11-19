@@ -17,6 +17,10 @@
 
         IRepository<WordAttribute> WordAttributes { get; }
 
+        IRepository<Quiz> Quizzes { get; }
+
+        IRepository<QuizQuestion> QuizQuestions { get; }
+
         DbContext Context { get; }
 
         int SaveChanges();

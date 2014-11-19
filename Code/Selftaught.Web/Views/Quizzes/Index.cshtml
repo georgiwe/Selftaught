@@ -1,0 +1,29 @@
+﻿@using Selftaught.Common.Enumerations
+@using System.Collections.Generic;
+@model IEnumerable<SelectListItem>
+
+@{
+    ViewBag.Title = "Select Quiz Type";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+@using (@Html.BeginForm("GetQuiz", "Quizzes", FormMethod.Get, new { @class = "form form-horizontal" }))
+{
+    
+    <div class="form-group">
+        @Html.AntiForgeryToken()
+        <label for="quizType" class="control-label">Quiz Types:</label>
+        @Html.DropDownList("quizType", Model, new { @class = "form-control" })
+    </div>
+    
+    <div class="form-group">
+        @Html.CheckBox("onlyMine", true)
+        <label for="onlyMine" class="control-label">Only Words I've Added</label>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Begin Quiz" class="btn btn-default" />
+    </div>
+}

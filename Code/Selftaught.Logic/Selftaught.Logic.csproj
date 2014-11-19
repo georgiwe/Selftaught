@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4B4AAAE1-67CE-4071-956C-A7D5EDBE9362}</ProjectGuid>
+    <ProjectGuid>{FD929C59-F7FB-4A25-BB51-27FBCED2FABC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Selftaught.Common</RootNamespace>
-    <AssemblyName>Selftaught.Common</AssemblyName>
+    <RootNamespace>Selftaught.Logic</RootNamespace>
+    <AssemblyName>Selftaught.Logic</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,12 +39,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\Const.cs" />
-    <Compile Include="Enumerations\QuizType.cs" />
-    <Compile Include="Extensions\EnumerableExtensions.cs" />
-    <Compile Include="Extensions\QueriableExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Contracts\IQuizGenerator.cs" />
+    <Compile Include="QuizGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Selftaught.Common\Selftaught.Common.csproj">
+      <Project>{4b4aaae1-67ce-4071-956c-a7d5edbe9362}</Project>
+      <Name>Selftaught.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Selftaught.Data.Common\Selftaught.Data.Common.csproj">
+      <Project>{b4e8c574-49de-4114-8fe2-cd09272952dd}</Project>
+      <Name>Selftaught.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Selftaught.Data.Models\Selftaught.Data.Models.csproj">
+      <Project>{75126dbc-56bd-4b4c-92a7-cd3afdf0d49d}</Project>
+      <Name>Selftaught.Data.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

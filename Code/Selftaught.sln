@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{E67DF021-A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{D8695AFE-E106-42B1-9F4C-B6A4A36618C6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{F6D1C942-F8F2-4314-ABA0-F3CFB0B29618}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{F6D1C942-F8F2-4314-ABA0-F3CFB0B29618}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selftaught.Data", "Selftaught.Data\Selftaught.Data.csproj", "{6E17CCCF-CED1-4662-8550-F2486B91564A}"
 EndProject
@@ -21,12 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selftaught.Data.Models", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selftaught.Web.Infrastructure", "Selftaught.Web.Infrastructure\Selftaught.Web.Infrastructure.csproj", "{EF8F35A3-567A-4A70-ADAF-57F4E173AE15}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{52CAA1D6-1FFD-4A38-ABA3-F5E7B3BDD727}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KendoMvcTrial", "KendoMvcTrial", "{EC98D734-54A7-4474-8FAF-9FE5D12FC441}"
-	ProjectSection(SolutionItems) = preProject
-		C:\Users\Georgi\Desktop\ASP.NET-MVC-Exam-Skeleton-master\ASP.NET-MVC-Exam-Skeleton-master\External Libraries\KendoUI MVC\Kendo.Mvc.dll = C:\Users\Georgi\Desktop\ASP.NET-MVC-Exam-Skeleton-master\ASP.NET-MVC-Exam-Skeleton-master\External Libraries\KendoUI MVC\Kendo.Mvc.dll
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selftaught.Logic", "Selftaught.Logic\Selftaught.Logic.csproj", "{FD929C59-F7FB-4A25-BB51-27FBCED2FABC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +53,10 @@ Global
 		{EF8F35A3-567A-4A70-ADAF-57F4E173AE15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF8F35A3-567A-4A70-ADAF-57F4E173AE15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF8F35A3-567A-4A70-ADAF-57F4E173AE15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD929C59-F7FB-4A25-BB51-27FBCED2FABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD929C59-F7FB-4A25-BB51-27FBCED2FABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD929C59-F7FB-4A25-BB51-27FBCED2FABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD929C59-F7FB-4A25-BB51-27FBCED2FABC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,7 +67,6 @@ Global
 		{E26CEEB3-DCF0-4092-BFDC-86BAAC537C52} = {D8695AFE-E106-42B1-9F4C-B6A4A36618C6}
 		{75126DBC-56BD-4B4C-92A7-CD3AFDF0D49D} = {E67DF021-AF84-4D5C-B820-65F2A7ED5A43}
 		{EF8F35A3-567A-4A70-ADAF-57F4E173AE15} = {D8695AFE-E106-42B1-9F4C-B6A4A36618C6}
-		{52CAA1D6-1FFD-4A38-ABA3-F5E7B3BDD727} = {F6D1C942-F8F2-4314-ABA0-F3CFB0B29618}
-		{EC98D734-54A7-4474-8FAF-9FE5D12FC441} = {52CAA1D6-1FFD-4A38-ABA3-F5E7B3BDD727}
+		{FD929C59-F7FB-4A25-BB51-27FBCED2FABC} = {F6D1C942-F8F2-4314-ABA0-F3CFB0B29618}
 	EndGlobalSection
 EndGlobal

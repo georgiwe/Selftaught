@@ -8,7 +8,10 @@
     using Kendo.Mvc.UI.Fluent;
     public static class KendoHelpers
     {
-        public static GridBuilder<T> FullFeaturedGrid<T>(this HtmlHelper helper, string controllerName, Expression<Func<T, object>> modelIdExpression, Action<GridColumnFactory<T>> columns = null) where T : class
+        public static string FullFeaturedGrid<T>(
+            this HtmlHelper helper, string controllerName, 
+            Expression<Func<T, object>> modelIdExpression, 
+            Action<GridColumnFactory<T>> columns = null) where T : class
         {
             if (columns == null)
             {
@@ -39,7 +42,7 @@
                         .Create(create => create.Action("Create", controllerName))
                         .Update(update => update.Action("Update", controllerName))
                         .Destroy(destroy => destroy.Action("Destroy", controllerName))
-                        );
+                        ).ToHtmlString();
         }
     }
 }

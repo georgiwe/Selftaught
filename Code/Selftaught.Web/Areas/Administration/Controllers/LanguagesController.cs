@@ -52,10 +52,10 @@ namespace Selftaught.Web.Areas.Administration.Controllers
         [HttpPost]
         public ActionResult Update([DataSourceRequest]DataSourceRequest request, LanguageViewModel model)
         {
-            if (model.Id == null)
-                this.Create(request, model);
-            else
-                base.Update<Language, LanguageViewModel>(model, model.Id);
+            //if (model.Id == null)
+            //    this.Create(request, model);
+            //else
+            base.Update<Language, LanguageViewModel>(model, model.Id);
 
             return this.GridOperation(model, request);
         }

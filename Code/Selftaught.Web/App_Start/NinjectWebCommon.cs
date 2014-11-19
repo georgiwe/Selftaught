@@ -5,17 +5,18 @@ namespace Selftaught.Web.App_Start
 {
     using System;
     using System.Web;
+    using System.Data.Entity;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
     using Ninject.Web.Common;
-    using System.Data.Entity;
+
     using Selftaught.Data;
-    using Selftaught.Data.Common.Repositories;
-    using Selftaught.Data.Models;
     using Selftaught.Data.DataAccess;
     using Selftaught.Data.Factories;
+    using Selftaught.Logic;
+    using Selftaught.Logic.Contracts;
 
     public static class NinjectWebCommon 
     {
@@ -70,6 +71,7 @@ namespace Selftaught.Web.App_Start
             kernel.Bind<DbContext>().To<ApplicationDbContext>();
             kernel.Bind<ISelftaughtData>().To<SelftaughtData>().WithConstructorArgument(typeof(DbContext));
             kernel.Bind<IWordAttributeFactory>().To<WordAttributeFactory>();
+            kernel.Bind<IQuizGenerator>().To<QuizGenerator>();
         }        
     }
 }

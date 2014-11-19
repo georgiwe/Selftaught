@@ -23,9 +23,13 @@
 
         public virtual IDbSet<Language> Languages { get; set; }
 
-        public virtual DbSet<WordTranslation> Translations { get; set; }
+        public virtual IDbSet<WordTranslation> Translations { get; set; }
 
         public virtual IDbSet<WordAttribute> WordAttributes { get; set; }
+
+        public virtual IDbSet<Quiz> Quizzes { get; set; }
+
+        public virtual IDbSet<QuizQuestion> QuizQuestions { get; set; }
 
         public override int SaveChanges()
         {

@@ -3,15 +3,44 @@
 
 @{
     ViewBag.Title = "Administrate Languages";
+    var controllerName = "Languages";
 }
 
 <h2>@ViewBag.Title</h2>
 
 @(Html.FullFeaturedGrid<LanguageViewModel>("Languages", m => m.Id, c =>
-{
-    c.Bound(m => m.Id).Hidden();
-    c.Bound(m => m.Name);
+    {
+        c.Bound(m => m.Id).Hidden();
+        c.Bound(m => m.Name);
 
-    c.Command(cmd => cmd.Edit());
-    c.Command(cmd => cmd.Destroy());
-}))
+        c.Command(cmd => cmd.Edit());
+        c.Command(cmd => cmd.Destroy());
+    }))
+
+@*@(Html.Kendo()
+    .Grid<LanguageViewModel>()
+    .Name("grid")
+    .Columns(c =>
+    {
+        c.Bound(m => m.Id).Hidden();
+        c.Bound(m => m.Name);
+
+        c.Command(cmd => cmd.Edit());
+        c.Command(cmd => cmd.Destroy());
+    })
+    .ColumnMenu()
+    .Pageable(page => page.Refresh(true))
+    .Sortable()
+    .Groupable()
+    .Filterable()
+    .Editable(edit => edit.Mode(GridEditMode.PopUp))
+    .ToolBar(toolbar => toolbar.Create())
+    .DataSource(data =>
+        data
+        .Ajax()
+        .Model(m => m.Id(x => x.Id))
+            .Read(read => read.Action("Read", controllerName))
+            .Create(create => create.Action("Create", controllerName))
+            .Update(update => update.Action("Update", controllerName))
+            .Destroy(destroy => destroy.Action("Destroy", controllerName))
+    ))*@

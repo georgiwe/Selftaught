@@ -1,0 +1,33 @@
+﻿@using System.Collections.Generic;
+@using Selftaught.Web.ViewModels.Quizzes;
+@model IList<QuizQuestionViewModel>
+
+<table class="table table-responsive table-condensed table-hover table-striped">
+    <thead>
+        <tr>
+            <td>Question</td>
+            <td>Answer</td>
+            <td>Correct</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var question in Model)
+        {
+            <tr class="@(question.IsCorrect ? "success" : "danger")">
+                <td>@question.Question</td>
+                <td>@question.Answer</td>
+                <td>
+                    @if (question.IsCorrect)
+                    {
+                        <span class="glyphicon glyphicon-ok"></span>
+                    }
+                    else
+                    {
+                        <span class="glyphicon glyphicon-remove"></span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

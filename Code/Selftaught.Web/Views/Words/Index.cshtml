@@ -56,7 +56,7 @@
 
     <script>
         $('#filter-btn').on('click', function () {
-            var text = $('#search-tb').val();
+            var text = $('#search-tb').val().toLowerCase();
 
             $('.list-group-item').each(function (ind, elem) {
                 elem = $(elem);
@@ -66,7 +66,7 @@
                     return;
                 }
 
-                if (elem.text().indexOf(text) < 0) {
+                if (elem.text().toLowerCase().indexOf(text) < 0) {
                     elem.hide();
                 }
             });

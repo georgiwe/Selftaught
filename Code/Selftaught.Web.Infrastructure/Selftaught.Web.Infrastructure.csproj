@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="CustomAttributes\AjaxOnlyAttribute.cs" />
     <Compile Include="Helpers\KendoHelpers.cs" />
+    <Compile Include="Helpers\QuizProgressHelper.cs" />
     <Compile Include="ModelMapping\AutoMapperConfiguration.cs" />
     <Compile Include="ModelMapping\IRequiresCustomMapping.cs" />
     <Compile Include="ModelMapping\IMapFrom.cs" />
@@ -88,6 +89,19 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libraries\KendoTrial\Kendo.Mvc.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Selftaught.Data.Common\Selftaught.Data.Common.csproj">
+      <Project>{b4e8c574-49de-4114-8fe2-cd09272952dd}</Project>
+      <Name>Selftaught.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Selftaught.Data.Models\Selftaught.Data.Models.csproj">
+      <Project>{75126dbc-56bd-4b4c-92a7-cd3afdf0d49d}</Project>
+      <Name>Selftaught.Data.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />

@@ -78,7 +78,7 @@
 
             var quiz = this.QuizGen.GenerateQuiz(lang, words, quizTypeEnum);
 
-            if (quiz.Questions.Count <= DefaultQuestionCount)
+            if (quiz.Questions.Count < DefaultQuestionCount)
             {
                 TempData["error"] = "You have not added enough words in " + Session[Language];
                 return RedirectToAction("Index");

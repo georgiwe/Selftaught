@@ -19,6 +19,7 @@ namespace Selftaught.Web.Areas.Administration.Controllers
         public LanguagesController(ISelftaughtData data)
             : base(data)
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
         }
 
         protected override System.Collections.IEnumerable GetData()

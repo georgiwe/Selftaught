@@ -8,16 +8,16 @@
 
 <h2>@ViewBag.Title</h2>
 
-@(Html.FullFeaturedGrid<LanguageViewModel>("Languages", m => m.Id, c =>
+@*@(Html.FullFeaturedGrid<LanguageViewModel>("Languages", m => m.Id, c =>
     {
         c.Bound(m => m.Id).Hidden();
         c.Bound(m => m.Name);
 
         c.Command(cmd => cmd.Edit());
         c.Command(cmd => cmd.Destroy());
-    }))
+    }))*@
 
-@*@(Html.Kendo()
+@(Html.Kendo()
     .Grid<LanguageViewModel>()
     .Name("grid")
     .Columns(c =>
@@ -43,4 +43,4 @@
             .Create(create => create.Action("Create", controllerName))
             .Update(update => update.Action("Update", controllerName))
             .Destroy(destroy => destroy.Action("Destroy", controllerName))
-    ))*@
+    ))

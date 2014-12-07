@@ -67,8 +67,8 @@
             var lang = this.GetCurrentLanguage();
 
             var words = this.data.Words.All()
-                .Where(w => w.AddedByUserId == null || w.AddedByUserId == user.Id)
                 .Where(w => w.Language.Name.ToLower() == lang)
+                .Where(w => w.AddedByUserId == null || w.AddedByUserId == user.Id)
                 .Project()
                 .To<WordDetailedViewModel>()
                 .ToList();

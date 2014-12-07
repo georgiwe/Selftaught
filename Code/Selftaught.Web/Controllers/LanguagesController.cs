@@ -31,7 +31,9 @@
                 var userId = this.User.Identity.GetUserId();
                 var user = this.data.Users.Find(userId);
 
-                languageNames = user.StudyingLanguages.Select(l => l.Name);
+                languageNames = user.StudyingLanguages
+                    .Where(l => l.IsDeleted == false)
+                    .Select(l => l.Name);
             }
             else
             {

@@ -34,7 +34,7 @@ namespace Selftaught.Web
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.slate.css",
+                      "~/Content/bootstrap.flatly.css",
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/Kendo").Include(

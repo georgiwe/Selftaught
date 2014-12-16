@@ -1,0 +1,32 @@
+﻿@using Selftaught.Web.ViewModels.Language;
+@model IEnumerable<LanguageViewModel>
+
+@{
+    ViewBag.Title = "Manage Languages";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+@using (@Html.BeginForm("Manage", "Languages", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken();
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="selectedLanguageIds">The languages you are studying:</label>
+        <div class="col-md-10">
+            <select class="form-control" multiple="multiple" name="selectedLanguageIds" required="required">
+                @foreach (var lang in Model)
+                {
+                    <option value="@lang.Id">@lang.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+}

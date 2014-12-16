@@ -81,5 +81,6 @@ textarea {
     height: 25px;
 }
 
-#search-cont {
+.lang-label {
+    display: block;
 }

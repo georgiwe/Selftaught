@@ -8,9 +8,12 @@
 
     using Microsoft.AspNet.Identity;
 
+    using AutoMapper.QueryableExtensions;
+
     using Selftaught.Data.Common.Repositories;
     using Selftaught.Data.DataAccess;
     using Selftaught.Data.Models;
+    using Selftaught.Web.ViewModels.Language;
 
     public class LanguagesController : BaseController
     {
@@ -56,6 +59,59 @@
                 this.Session["language"] = newLang.Name;
 
             return this.Redirect(returnUrl);
+        }
+
+        [HttpGet]
+        public ActionResult Manage()
+        {
+            var availableLanguages = GetAllAvailableLanguages();
+            return View(availableLanguages);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Manage(IEnumerable<int> selectedLanguageIds)
+        {
+            var availableLanguages = GetAllAvailableLanguages();
+
+            if (selectedLanguageIds == null || ModelState.IsValid == false)
+            {
+                this.TempData["error"] = "Please select at least one language.";
+                return RedirectToAction("Manage");
+            }
+
+            var user = this.GetCurrentUser();
+
+            user.StudyingLanguages.Clear();
+            this.data.SaveChanges();
+
+            foreach (var langId in selectedLanguageIds)
+            {
+                var lang = this.data.Languages.Find(langId);
+
+                if (lang == null)
+                {
+                    this.TempData["error"] = "Language does not exist.";
+                    return RedirectToAction("Manage");
+                }
+
+                user.StudyingLanguages.Add(lang);
+            }
+
+            this.data.SaveChanges();
+            this.Session["language"] = user.StudyingLanguages.FirstOrDefault().Name;
+            this.TempData["success"] = "Languages Updated!";
+
+            return View(availableLanguages);
+        }
+
+        private IEnumerable<LanguageViewModel> GetAllAvailableLanguages()
+        {
+            var availableLanguages = this.data.Languages.All()
+                .Project()
+                .To<LanguageViewModel>();
+
+            return availableLanguages;
         }
     }
 }

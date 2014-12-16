@@ -368,6 +368,7 @@
     <Content Include="Views\Shared\EditorTemplates\TextBox.cshtml" />
     <Content Include="Views\Quizzes\QuizFinished.cshtml" />
     <Content Include="Views\Shared\QuizQuestionViewModelTable.cshtml" />
+    <Content Include="Views\Languages\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -437,7 +438,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
   <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
        Other similar extension points exist, see Microsoft.Common.targets.

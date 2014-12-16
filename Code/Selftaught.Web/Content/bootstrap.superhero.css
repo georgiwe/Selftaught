@@ -6216,6 +6216,7 @@ body {
 }
 .dropdown-menu {
   border: 1px solid #000;
+  border-top: none;
   margin: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
